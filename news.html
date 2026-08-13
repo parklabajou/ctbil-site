@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News · CTBiL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .phead{background:linear-gradient(135deg,var(--navy),var(--blue2) 70%,var(--blue));color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
+  .phead .wrap{position:relative;z-index:1}
+  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
+  .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
+  .phead p{color:#D6E3F2;max-width:560px;font-size:15.5px}
+  .controls{position:sticky;top:0;z-index:20;background:rgba(246,248,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .controls .wrap{display:flex;gap:8px;flex-wrap:wrap;padding:14px 28px}
+  .chip{font-size:13px;font-weight:600;padding:7px 15px;border-radius:22px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .15s}
+  .chip:hover{border-color:var(--blue);color:var(--blue)}
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  main{padding:44px 0 80px}
+  .feed{position:relative}
+  .feed::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  @media(max-width:640px){.feed::before{display:none}}
+  .news{position:relative;display:grid;grid-template-columns:1fr;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:0 0 22px 46px;transition:transform .15s ease,box-shadow .15s ease}
+  @media(max-width:640px){.news{margin-left:0}}
+  .news:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
+  .news .node{position:absolute;left:-38px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+  @media(max-width:640px){.news .node{display:none}}
+  .news.has-img{grid-template-columns:200px 1fr}
+  @media(max-width:640px){.news.has-img{grid-template-columns:1fr}}
+  .news .img{background-size:cover;background-position:center;min-height:150px}
+  .news .body{padding:22px 24px}
+  .news .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .tag{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.03em}
+  .tag.award{background:rgba(176,141,60,.16);color:#7d6220}
+  .tag.talk{background:rgba(0,114,206,.12);color:var(--blue2)}
+  .tag.career{background:rgba(16,120,80,.12);color:#0b7350}
+  .tag.grant{background:rgba(120,60,160,.12);color:#6a2a94}
+  .tag.recruit{background:rgba(16,35,63,.1);color:var(--navy)}
+  .news .date{font-size:12.5px;color:var(--muted);font-weight:500}
+  .news h3{font-size:17px;font-weight:600;line-height:1.35;margin-bottom:6px}
+  .news p.desc{font-size:14px;color:var(--muted)}
+  footer{background:#0A1B33;color:#9FB4CE;padding:32px 0;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="phead">
+  <div class="wrap">
+    <div class="kick">News</div>
+    <h1>Lab News &amp; Highlights</h1>
+    <p>Awards, presentations, career milestones, and life in the lab.</p>
+  </div>
+</header>
+
+<div class="controls"><div class="wrap" id="filters"></div></div>
+<main><div class="wrap"><div class="feed" id="feed"></div></div></main>
+<footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
+
+
+<!-- ###################################################################
+     ▼▼▼   뉴스 목록  —  여기만 수정하세요   ▼▼▼
+
+     ● 새 소식 추가:  아래 <article> ... </article> 블록 하나를 복사해서
+                      맨 위에 붙여넣고, 칸 안의 글자만 바꾸면 됩니다.
+     ● 따옴표·쉼표 걱정 없음. 한 칸 비워둬도 페이지는 안 깨집니다.
+     ● date="..."     → 날짜 (예: date="July 2026")
+     ● type="..."     → 태그 색상. 다음 중 하나:
+                        award(수상,금) / talk(발표,파랑) / career(진로,초록)
+                        / grant(연구비,보라) / recruit(모집,남색)
+     ● label="..."    → 태그에 보일 글자 (예: label="Award")
+     ● class="title"  → 소식 제목
+     ● class="desc"   → 한두 줄 설명
+     ● class="img"    → 사진 주소 (없으면 비워두기). 예: images/isscr.jpg
+     ################################################################### -->
+<div id="news-data" hidden>
+
+  <article date="July 2026" type="award" label="Award">
+    <p class="title">ISSCR 2026에서 랩 구성원 2명 수상</p>
+    <p class="desc">몬트리올에서 열린 ISSCR 연례학술대회에서 Travel Award와 Merit Award를 수상했습니다.</p>
+    <p class="img"></p>
+  </article>
+
+  <article date="July 2026" type="career" label="Career">
+    <p class="title">대학원생, 아모레퍼시픽 R&amp;I 센터 입사</p>
+    <p class="desc">학위 취득 전 아모레퍼시픽 연구혁신센터에 취업이 확정되었습니다.</p>
+    <p class="img"></p>
+  </article>
+
+  <article date="May 2026" type="talk" label="Talk">
+    <p class="title">면역세포 통합 피부 오가노이드 모델 발표</p>
+    <p class="desc">한국조직공학재생의학회에서 'An Immune Cell-integrated Skin Organoid Model'을 발표했습니다.</p>
+    <p class="img"></p>
+  </article>
+
+  <article date="April 2026" type="grant" label="Grant">
+    <p class="title">WISET 여대학원생 공학연구팀제 선정 (800만원)</p>
+    <p class="desc">대학원생이 WISET 프로그램을 통해 연구비를 지원받게 되었습니다.</p>
+    <p class="img"></p>
+  </article>
+
+  <article date="January 2026" type="award" label="Award">
+    <p class="title">교내 3분 논문 발표·연구노트 경진대회 다수 수상</p>
+    <p class="desc">여러 구성원이 교내 경진대회에서 수상하며 한 해를 시작했습니다.</p>
+    <p class="img"></p>
+  </article>
+
+  <article date="September 2025" type="career" label="Career">
+    <p class="title">박사후연구원, 코넬대학교 생의공학과로 이동</p>
+    <p class="desc">박사후연구원이 Cornell University 생의공학 프로그램으로 자리를 옮겼습니다.</p>
+    <p class="img"></p>
+  </article>
+
+</div>
+<!-- ▲▲▲   뉴스 목록 끝   ▲▲▲ -->
+
+
+<script>
+/* ===== 아래는 디자인/표시 코드입니다. 수정할 필요 없어요. ===== */
+function parseNews(){
+  return [...document.querySelectorAll('#news-data article')].map(a=>({
+    date:(a.getAttribute('date')||'').trim(),
+    type:(a.getAttribute('type')||'award').trim(),
+    label:(a.getAttribute('label')||'').trim(),
+    title:(a.querySelector('.title')?.innerHTML||'').trim(),
+    desc:(a.querySelector('.desc')?.innerHTML||'').trim(),
+    img:(a.querySelector('.img')?.textContent||'').trim()
+  }));
+}
+const NEWS = parseNews();
+
+function render(filter){
+  const feed=document.getElementById('feed'); feed.innerHTML='';
+  const data = filter&&filter!=='All' ? NEWS.filter(n=>n.type===filter) : NEWS;
+  data.forEach(n=>{
+    const el=document.createElement('div'); el.className='news'+(n.img?' has-img':'');
+    const imgHtml=n.img?`<div class="img" style="background-image:url('${n.img}')"></div>`:'';
+    el.innerHTML=`<div class="node"></div>${imgHtml}
+      <div class="body">
+        <div class="top"><span class="tag ${n.type}">${n.label}</span><span class="date">${n.date}</span></div>
+        <h3>${n.title}</h3>
+        <p class="desc">${n.desc}</p>
+      </div>`;
+    feed.appendChild(el);
+  });
+}
+function buildFilters(){
+  const types=[['All','All'],['award','Award'],['talk','Talk'],['career','Career'],['grant','Grant']];
+  const box=document.getElementById('filters');
+  types.forEach((t,i)=>{
+    const c=document.createElement('button'); c.className='chip'+(i===0?' active':''); c.textContent=t[1];
+    c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');render(t[0]);};
+    box.appendChild(c);
+  });
+}
+buildFilters(); render('All');
+</script>
+</body>
+</html>
