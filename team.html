@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team · CTBiL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .phead{background:linear-gradient(135deg,var(--navy),var(--blue2) 70%,var(--blue));color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
+  .phead .wrap{position:relative;z-index:1}
+  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
+  .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
+  .phead p{color:#D6E3F2;max-width:560px;font-size:15.5px}
+  main{padding:56px 0 80px}
+  .sec-t{font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin:6px 0 20px;display:flex;align-items:center;gap:12px}
+  .sec-t .ln{flex:1;height:1px;background:var(--line)}
+
+  /* PI card */
+  .pi{display:grid;grid-template-columns:190px 1fr;gap:30px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px;margin-bottom:56px}
+  @media(max-width:640px){.pi{grid-template-columns:1fr;text-align:center}}
+  .pi .photo{width:190px;height:220px;border-radius:16px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:44px;background-size:cover;background-position:center}
+  @media(max-width:640px){.pi .photo{margin:0 auto}}
+  .pi h2{font-size:26px;font-weight:600;margin-bottom:4px}
+  .pi .title{color:var(--blue2);font-weight:600;font-size:15px;margin-bottom:14px}
+  .pi p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .pi .links a{display:inline-block;font-size:13px;font-weight:600;color:var(--blue);border:1px solid var(--line);padding:6px 14px;border-radius:20px;margin-right:8px;transition:all .15s}
+  .pi .links a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+  /* member grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
+  .m{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:center;transition:transform .16s ease,box-shadow .16s ease}
+  .m:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
+  .m .av{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:28px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
+  .m h3{font-size:16.5px;font-weight:600;margin-bottom:3px}
+  .m .role{font-size:12.5px;font-weight:700;color:var(--blue2);margin-bottom:8px}
+  .m .deg{font-size:12.5px;color:var(--muted)}
+  .m .topic{font-size:12.5px;color:var(--muted);margin-top:6px;font-style:italic}
+  .m.mascot .av{background:linear-gradient(135deg,var(--gold),#e0c37f)}
+
+  /* alumni */
+  .alumni-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .al{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:center;transition:transform .15s ease,box-shadow .15s ease}
+  .al:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(16,35,63,.08)}
+  .al .av2{width:50px;height:50px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:17px;background:linear-gradient(135deg,var(--blue2),#5aa6df);background-size:cover;background-position:center}
+  .al h3{font-size:15px;font-weight:600}
+  .al .when{font-size:12px;color:var(--muted);margin-top:1px}
+  .al .now{font-size:12.5px;color:var(--blue2);font-weight:600;margin-top:4px}
+
+  footer{background:#0A1B33;color:#9FB4CE;padding:32px 0;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="phead">
+  <div class="wrap">
+    <div class="kick">Team</div>
+    <h1>The People</h1>
+    <p>A team of scientists and engineers working at the interface of bioinformatics and regenerative medicine.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- ============ PI ============ -->
+    <div class="sec-t"><span>Principal Investigator</span><span class="ln"></span></div>
+    <!-- ▼ 교수님 정보 수정: 사진은 photo-url 안에 images/park.jpg 넣으면 됩니다 (비우면 이니셜) -->
+    <div class="pi">
+      <div class="photo" data-photo="">HJP</div>
+      <div>
+        <h2>Hyun-Ji Park, Ph.D.</h2>
+        <div class="title">Assistant Professor · Dept. of Molecular Science &amp; Technology, Ajou University</div>
+        <p>Prof. Park leads the Cell Therapy &amp; Bioinformatics Lab, combining computational and experimental approaches to develop next-generation regenerative therapeutics — extracellular vesicles, organoids, and immune-modulating cell therapies for inflammatory and cardiovascular disease.</p>
+        <div class="links">
+          <a href="mailto:hyunjipark@ajou.ac.kr">✉ hyunjipark@ajou.ac.kr</a>
+          <a href="publications.html">Publications</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MEMBERS ============ -->
+    <div class="sec-t"><span>Members</span><span class="ln"></span></div>
+    <!-- ###################################################################
+         ▼▼▼   구성원  —  여기만 수정하세요   ▼▼▼
+         ● 새 멤버 추가: <div class="m"> ... </div> 블록 하나 복사해 붙이고 글자만 교체.
+         ● av 의 data-photo 에 images/파일명.jpg 를 넣으면 사진, 비우면 이니셜 원.
+         ● class="mascot" 을 붙이면 골드 아바타 (마스코트용).
+         ################################################################### -->
+    <div class="grid" id="members">
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="HP"></div>
+        <h3>Hye-Min Park</h3>
+        <div class="role">M.S. Candidate</div>
+        <div class="deg">B.S. Ajou Univ. '24</div>
+        <div class="topic">EV engineering · Bioinformatics</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="CK"></div>
+        <h3>Chae-Lin Kim</h3>
+        <div class="role">Integrated M.S.–Ph.D.</div>
+        <div class="deg">B.S. Ajou Univ. '24</div>
+        <div class="topic">EV engineering · Vessel organoids</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="HH"></div>
+        <h3>Hyeonjun Hwang</h3>
+        <div class="role">Integrated M.S.–Ph.D.</div>
+        <div class="deg">B.S. Cheongju Univ. '23</div>
+        <div class="topic">Liposome engineering · Reverse-aging</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="MP"></div>
+        <h3>Min-Seon Park</h3>
+        <div class="role">M.S. Candidate</div>
+        <div class="deg">B.S. Ajou Univ. '25</div>
+        <div class="topic">iPSC · Cell therapy</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="MP"></div>
+        <h3>Minseo Park</h3>
+        <div class="role">Integrated M.S.–Ph.D.</div>
+        <div class="deg">B.S. Ajou Univ. '25</div>
+        <div class="topic">Bioinformatics · Skin organoids</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="DY"></div>
+        <h3>Dahye You</h3>
+        <div class="role">M.S. Candidate</div>
+        <div class="deg">B.S. Ajou Univ. '26</div>
+        <div class="topic">Skin organoids</div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="SK"></div>
+        <h3>Sumin Kim</h3>
+        <div class="role">Researcher</div>
+        <div class="deg">Research Staff</div>
+        <div class="topic"></div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="GC"></div>
+        <h3>Gyu Won Cho</h3>
+        <div class="role">Undergraduate Intern</div>
+        <div class="deg">Since 2026.01</div>
+        <div class="topic"></div>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="" data-initial="IS"></div>
+        <h3>In-Won Seo</h3>
+        <div class="role">Undergraduate Intern</div>
+        <div class="deg">Since 2026.07</div>
+        <div class="topic"></div>
+      </div>
+
+      <div class="m mascot">
+        <div class="av" data-photo="" data-initial="🐾"></div>
+        <h3>Seok-Gu</h3>
+        <div class="role">Lab Mascot</div>
+        <div class="deg">Joined Aug 2024</div>
+        <div class="topic"></div>
+      </div>
+
+    </div>
+
+    <!-- ============ ALUMNI ============ -->
+    <div class="sec-t" style="margin-top:56px"><span>Alumni</span><span class="ln"></span></div>
+    <!-- ###################################################################
+         ▼▼▼   졸업생 / 이전 구성원  —  여기만 수정하세요   ▼▼▼
+         ● 새 알럼나이 추가: <div class="al"> ... </div> 블록 하나 복사해 붙이고 글자만 교체.
+         ● av2 의 data-initial 에 이니셜(예: JD), data-photo 에 images/파일명.jpg (사진).
+         ● class="when"  → 재직 기간/직책 (예: Postdoc, ~2025)
+         ● class="now"   → 현재 소속 (예: → Cornell University)
+         ################################################################### -->
+    <div class="alumni-grid" id="alumni">
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="DK"></div>
+        <div>
+          <h3>Dr. Dasom Kong</h3>
+          <div class="when">Postdoc · 2024–2025</div>
+          <div class="now">→ Postdoc, Cornell University</div>
+        </div>
+      </div>
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="SL"></div>
+        <div>
+          <h3>Seunguk Lee</h3>
+          <div class="when">Master's student · 2024–2026</div>
+          <div class="now">→ Amorepacific</div>
+        </div>
+      </div>
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="HP"></div>
+        <div>
+          <h3>Hye-min Park</h3>
+          <div class="when">Master's student · 2024–2026</div>
+          <div class="now">→ CTBiL</div>
+        </div>
+      </div>
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="SJ"></div>
+        <div>
+          <h3>Seunghyuk Jung</h3>
+          <div class="when">Undergrad Intern · 2024–2025</div>
+          <div class="now">→ ROKA</div>
+        </div>
+      </div>
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="EL"></div>
+        <div>
+          <h3>Eunhye Lee</h3>
+          <div class="when">Undergrad Intern · 2025</div>
+        </div>
+      </div>
+
+      <div class="al">
+        <div class="av2" data-photo="" data-initial="SS"></div>
+        <div>
+          <h3>Sooyeon Sim</h3>
+          <div class="when">Undergrad Intern · 2024</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ▲▲▲   알럼나이 끝   ▲▲▲ -->
+
+  </div>
+</main>
+
+<footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
+
+<script>
+/* ===== 아바타 채우기 (사진 있으면 사진, 없으면 이니셜) — 수정 불필요 ===== */
+document.querySelectorAll('.av, .av2, .pi .photo').forEach(el=>{
+  const photo=(el.getAttribute('data-photo')||'').trim();
+  if(photo){ el.style.backgroundImage="url('"+photo+"')"; el.textContent=''; }
+  else{
+    const ini=el.getAttribute('data-initial');
+    if(ini!==null && el.textContent.trim()==='') el.textContent=ini;
+  }
+});
+</script>
+</body>
+</html>

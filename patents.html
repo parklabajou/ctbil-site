@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patents · CTBiL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .wrap{max-width:900px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .phead{background:linear-gradient(135deg,var(--navy),var(--blue2) 70%,var(--blue));color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
+  .phead .wrap{position:relative;z-index:1}
+  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
+  .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
+  .phead p{color:#D6E3F2;max-width:560px;font-size:15.5px}
+  main{padding:44px 0 80px}
+
+  .pat{display:flex;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;transition:transform .15s ease,box-shadow .15s ease}
+  .pat:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
+  .pat .ic{width:56px;height:56px;flex:none;border-radius:13px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center}
+  .pat .ic svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.7}
+  .pat h3{font-size:16px;font-weight:600;line-height:1.4;margin-bottom:6px}
+  .pat .inv{font-size:13px;color:var(--muted)}
+  .pat .inv .me{color:var(--ink);font-weight:600}
+  .pat .meta{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .pat .no{font-size:12.5px;font-weight:600;color:var(--navy);font-family:'Space Grotesk'}
+  .badge{font-size:10.5px;font-weight:700;padding:2px 10px;border-radius:20px}
+  .badge.reg{background:rgba(16,120,80,.12);color:#0b7350}
+  .badge.pend{background:rgba(176,141,60,.16);color:#7d6220}
+  .badge.ctry{background:rgba(0,114,206,.1);color:var(--blue2)}
+
+  footer{background:#0A1B33;color:#9FB4CE;padding:32px 0;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="phead">
+  <div class="wrap">
+    <div class="kick">Publications · Patents</div>
+    <h1>Patents</h1>
+    <p>Registered and pending intellectual property from our research.</p>
+  </div>
+</header>
+
+<main><div class="wrap" id="list"></div></main>
+<footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
+
+
+<!-- ###################################################################
+     ▼▼▼   특허 목록  —  여기만 수정하세요   ▼▼▼
+     ● 새 특허 추가: <article> 블록 하나 복사해 맨 위에 붙이고 글자만 교체.
+     ● status="reg"  → 등록(초록 배지) / status="pend" → 출원·심사중(금색 배지)
+     ● country="..." → 국가/구분 배지 (예: Korea, PCT)
+     ● class="inventors" 에서 <b>Park HJ</b> 로 감싸면 진하게 표시
+     ################################################################### -->
+<div id="pat-data" hidden>
+
+  <article status="pend" country="PCT">
+    <p class="title">3D auxetic structures and fabrication methods thereof</p>
+    <p class="inventors">Park JH, Crotts SJ, Davis ME, Hollister SJ, <b>Park HJ</b>, Wang L</p>
+    <p class="no">PCT/US2022/045937</p>
+    <p class="statusText">PCT Pending</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">lncRNA for induced pluripotent stem cell differentiation and uses thereof</p>
+    <p class="inventors">Kim YJ, Cho SW, Hwang JH, Kim MJ, <b>Park HJ</b>, Cho AN</p>
+    <p class="no">KR 10-2477906</p>
+    <p class="statusText">Registered</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">A novel PEGylated substance P</p>
+    <p class="inventors">Son Y, Hong HS, Kim S, Cho SW, Lee H, <b>Park HJ</b>, Yoon K, Lim S</p>
+    <p class="no">KR 10-2142978</p>
+    <p class="statusText">Registered · Divisional</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">A novel PEGylated substance P</p>
+    <p class="inventors">Son Y, Hong HS, Kim S, Cho SW, Lee H, <b>Park HJ</b>, Yoon K, Lim S</p>
+    <p class="no">KR 10-1811996</p>
+    <p class="statusText">Registered · Divisional</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">Nanoliposome for liver-targeting RNA interference</p>
+    <p class="inventors">Cho SW, <b>Park HJ</b></p>
+    <p class="no">KR 10-1685304</p>
+    <p class="statusText">Registered</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">Polyamine-peptide-immobilized substrates for feeder-free maintenance and enhanced differentiation of stem cells</p>
+    <p class="inventors">Cho SW, Lee H, <b>Park HJ</b>, Kim MJ, Yang K, Ko E</p>
+    <p class="no">KR 10-1545217</p>
+    <p class="statusText">Registered</p>
+  </article>
+
+  <article status="reg" country="Korea">
+    <p class="title">Polyamine-based vector for delivery of small interfering RNA</p>
+    <p class="inventors">Cho SW, <b>Park HJ</b></p>
+    <p class="no">KR 10-1329702</p>
+    <p class="statusText">Registered</p>
+  </article>
+
+</div>
+<!-- ▲▲▲   특허 목록 끝   ▲▲▲ -->
+
+
+<script>
+/* ===== 표시 코드 — 수정 불필요 ===== */
+const ICON = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L3.2 7.7l5.4-.8z"/></svg>`;
+const list=document.getElementById('list');
+[...document.querySelectorAll('#pat-data article')].forEach(a=>{
+  const status=(a.getAttribute('status')||'reg').trim();
+  const country=(a.getAttribute('country')||'').trim();
+  const title=(a.querySelector('.title')?.innerHTML||'').trim();
+  const inv=(a.querySelector('.inventors')?.innerHTML||'').trim();
+  const no=(a.querySelector('.no')?.textContent||'').trim();
+  const st=(a.querySelector('.statusText')?.textContent||'').trim();
+  const badgeClass = status==='pend'?'pend':'reg';
+  const el=document.createElement('div'); el.className='pat';
+  el.innerHTML=`<div class="ic">${ICON}</div>
+    <div style="flex:1">
+      <h3>${title}</h3>
+      <div class="inv">${inv}</div>
+      <div class="meta">
+        <span class="no">${no}</span>
+        ${country?`<span class="badge ctry">${country}</span>`:''}
+        <span class="badge ${badgeClass}">${st}</span>
+      </div>
+    </div>`;
+  list.appendChild(el);
+});
+</script>
+</body>
+</html>
