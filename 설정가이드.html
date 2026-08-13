@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTBiL 웹사이트 설정 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675;--soft:#EDF1F7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter','Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Space Grotesk','Apple SD Gothic Neo',sans-serif;letter-spacing:-.01em}
+  .wrap{max-width:840px;margin:0 auto;padding:0 26px}
+  code{background:var(--soft);padding:2px 7px;border-radius:6px;font-family:'SF Mono',Menlo,monospace;font-size:13.5px;color:var(--navy)}
+  .cover{background:linear-gradient(135deg,var(--navy),var(--blue2) 65%,var(--blue));color:#fff;padding:56px 0 48px}
+  .cover .eb{letter-spacing:.2em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--sky)}
+  .cover h1{font-size:34px;font-weight:600;margin:12px 0 8px}
+  .cover p{color:#D6E3F2;max-width:600px}
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:23px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .n{width:32px;height:32px;border-radius:9px;background:var(--blue);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:15px;flex:none}
+  .lead{color:var(--muted);margin-bottom:18px}
+  h3{font-size:15.5px;margin:20px 0 6px;color:var(--ink)}
+  p{margin-bottom:12px}
+  ol,ul{margin:0 0 12px 4px;padding-left:22px}
+  li{margin-bottom:8px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+  .file-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .file-row:last-child{border-bottom:none}
+  .file-row code{font-weight:600}
+  .file-row span{color:var(--muted);text-align:right}
+  .note{background:var(--soft);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:13px 17px;font-size:14px;margin:14px 0}
+  .tip{background:rgba(0,114,206,.07);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:13px 17px;font-size:14px;margin:14px 0}
+  .tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+  .tbl th{background:var(--soft);font-weight:600;color:var(--navy)}
+  b.hl{color:var(--blue2)}
+  footer{padding:34px 0 60px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="cover"><div class="wrap">
+  <div class="eb">Setup Guide</div>
+  <h1>CTBiL 웹사이트 설정 가이드</h1>
+  <p>GitHub Pages에 페이지를 올리고, 구글 사이트에 임베드하는 방법입니다. 순서대로 따라 하시면 됩니다. 코딩 지식은 필요 없어요.</p>
+</div></div>
+
+<div class="wrap">
+
+  <section>
+    <h2><span class="n">📁</span>받으신 파일</h2>
+    <div class="card">
+      <div class="file-row"><code>index.html</code><span>대문(홈) — 히어로·연구소개·최근 논문/뉴스</span></div>
+      <div class="file-row"><code>publications.html</code><span>논문 — 연도별 목록, 데이터만 수정해 갱신</span></div>
+      <div class="file-row"><code>news.html</code><span>뉴스 — 타임라인 피드, 태그 색상 구분</span></div>
+      <div class="file-row"><code>gallery.html</code><span>갤러리 — 사진 그리드 + 클릭 확대</span></div>
+    </div>
+    <div class="note">💡 논문·뉴스·갤러리는 각 파일 안의 <b>데이터 목록(▼▼▼ 표시 구간)</b>만 고치면 내용이 바뀝니다. 디자인 코드는 건드릴 필요 없어요.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">1</span>GitHub에 올리기</h2>
+    <p class="lead">GitHub Pages는 무료로 웹페이지를 호스팅해주는 기능입니다.</p>
+    <ol>
+      <li><a href="https://github.com/signup">github.com</a>에서 계정을 만듭니다(무료). 이미 있으면 로그인.</li>
+      <li>오른쪽 위 <b>+ → New repository</b> 클릭.</li>
+      <li>Repository name에 <code>ctbil-site</code> 처럼 입력하고, <b class="hl">Public</b> 선택 → <b>Create repository</b>.</li>
+      <li>새 저장소 화면에서 <b>uploading an existing file</b> 링크 클릭.</li>
+      <li>받으신 <code>index.html · publications.html · news.html · gallery.html</code> 4개를 드래그해서 올리고 <b>Commit changes</b>.</li>
+    </ol>
+    <div class="tip">🖼️ 갤러리에 실제 사진을 넣으려면: 저장소에 <code>images</code> 폴더를 만들어 사진을 올린 뒤, <code>gallery.html</code>의 목록에서 <code>src</code>를 <code>images/파일명.jpg</code>로 바꾸면 됩니다.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>GitHub Pages 켜기</h2>
+    <ol>
+      <li>저장소 상단 <b>Settings</b> → 왼쪽 메뉴 <b>Pages</b>.</li>
+      <li>Branch를 <code>main</code>, 폴더는 <code>/ (root)</code>로 두고 <b>Save</b>.</li>
+      <li>1~2분 뒤 새로고침하면 주소가 나옵니다:<br>
+        <code>https://아이디.github.io/ctbil-site/</code></li>
+      <li>각 페이지 주소는 뒤에 파일명을 붙인 형태입니다:
+        <table class="tbl">
+          <tr><th>페이지</th><th>주소 예시</th></tr>
+          <tr><td>대문</td><td><code>.../ctbil-site/index.html</code></td></tr>
+          <tr><td>논문</td><td><code>.../ctbil-site/publications.html</code></td></tr>
+          <tr><td>뉴스</td><td><code>.../ctbil-site/news.html</code></td></tr>
+          <tr><td>갤러리</td><td><code>.../ctbil-site/gallery.html</code></td></tr>
+        </table>
+      </li>
+    </ol>
+    <div class="tip">✅ 각 주소를 브라우저에서 먼저 열어 제대로 보이는지 확인한 뒤 다음 단계로 가세요.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>구글 사이트에 임베드</h2>
+    <p class="lead">구글 사이트는 주소와 상단 메뉴 등 뼈대를 맡고, 각 페이지 내용은 위 GitHub 주소를 불러옵니다.</p>
+    <ol>
+      <li>구글 사이트 편집기에서 원하는 페이지(예: 논문)로 이동.</li>
+      <li>오른쪽 <b>삽입(Insert)</b> 패널에서 <b class="hl">삽입(Embed)</b> 클릭.</li>
+      <li><b>URL 기준(By URL)</b> 탭에 해당 페이지의 GitHub 주소를 붙여넣기 → <b>삽입</b>.</li>
+      <li>미리보기가 뜨면 <b>전체 페이지(Whole page)</b> 선택.</li>
+      <li>삽입된 상자의 모서리를 드래그해 <b>높이를 넉넉히</b> 늘려주세요(내용이 잘리지 않게).</li>
+      <li>이 방식으로 각 페이지(대문·논문·뉴스·갤러리)에 해당 주소를 하나씩 넣습니다.</li>
+    </ol>
+    <div class="note">📐 <b>높이 팁</b>: 임베드는 높이가 고정이라 내용이 길면 잘릴 수 있어요. 상자를 충분히 크게 늘리거나, 페이지 하나에 임베드 하나만 배치하는 걸 권장합니다. 폭은 <b>가로 전체(full width)</b>로 두면 가장 예쁩니다.</div>
+    <div class="tip">🔗 상단 메뉴 구성은 구글 사이트에서 합니다: Team·Research·Contact 등 기존 페이지는 그대로 두고, 같은 아주대 블루 계열로 테마 색만 맞추면 통일감이 좋아집니다.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>앞으로 업데이트하는 법</h2>
+    <p class="lead">논문·뉴스·사진 추가는 GitHub에서 데이터 한 줄만 고치면 됩니다. 구글 사이트는 건드릴 필요 없어요.</p>
+    <h3>논문 추가</h3>
+    <ol>
+      <li>GitHub에서 <code>publications.html</code> 열고 연필(Edit) 아이콘 클릭.</li>
+      <li><code>const PUBLICATIONS = [</code> 바로 아래에 기존 <code>{ ... }</code> 한 줄을 복사해 붙이고, 연도·제목·저자·저널만 수정.</li>
+      <li>아래 초록 버튼 <b>Commit changes</b> → 1~2분 뒤 자동 반영.</li>
+    </ol>
+    <h3>뉴스 추가</h3>
+    <p><code>news.html</code>의 <code>const NEWS = [</code> 아래에 항목을 추가. 태그 종류는 <code>award·talk·career·grant·recruit</code> 중 선택.</p>
+    <h3>사진 추가</h3>
+    <p><code>images</code> 폴더에 사진 올리고, <code>gallery.html</code>의 <code>PHOTOS</code> 목록에 <code>{ src:"images/파일명.jpg", cap:"설명" }</code> 추가.</p>
+    <div class="note">🔧 나중에 원하시면 논문·뉴스를 <b>구글 시트</b>에서 관리하도록 연결해, 시트에 한 줄 추가하면 사이트가 갱신되게 확장할 수도 있어요. 필요하면 말씀해 주세요.</div>
+  </section>
+
+  <footer>
+    Cell Therapy &amp; Bioinformatics Lab · Ajou University<br>
+    막히는 부분이 있으면 어느 단계에서 멈췄는지 알려주세요 — 화면 그대로 도와드릴게요.
+  </footer>
+</div>
+</body>
+</html>
