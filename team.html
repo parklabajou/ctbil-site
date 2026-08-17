@@ -45,6 +45,25 @@
   .m .deg{font-size:12.5px;color:var(--muted)}
   .m .topic{font-size:12.5px;color:var(--muted);margin-top:6px;font-style:italic}
   .m.mascot .av{background:linear-gradient(135deg,var(--gold),#e0c37f)}
+  .m{cursor:pointer}
+  .m .bio{display:none}
+  .m .more{margin-top:13px;font-size:11.5px;font-weight:700;color:var(--blue);opacity:.6;transition:opacity .15s}
+  .m:hover .more{opacity:1}
+
+  /* member detail modal */
+  .modal{position:fixed;inset:0;background:rgba(6,16,34,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+  .modal.open{display:flex}
+  .mcard{background:#fff;border-radius:22px;max-width:520px;width:100%;padding:34px 36px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:pop .18s ease}
+  @keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+  .mx{position:absolute;top:16px;right:18px;width:36px;height:36px;border:none;border-radius:50%;background:var(--bg);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .mx:hover{background:#e7ecf3;color:var(--ink)}
+  .mtop{display:flex;gap:20px;align-items:center;margin-bottom:18px}
+  .mav{width:92px;height:92px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:32px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
+  .mcard h3{font-size:22px;font-weight:600;margin-bottom:4px}
+  .mrole{font-size:13.5px;font-weight:700;color:var(--blue2)}
+  .mdeg{font-size:13px;color:var(--muted);margin-top:2px}
+  .mtopic{display:inline-block;font-size:12.5px;font-weight:600;color:var(--navy);background:#EAF1FA;border:1px solid #DCE7F4;padding:5px 13px;border-radius:20px;margin-bottom:16px}
+  .mbio{font-size:14.5px;line-height:1.7;color:var(--ink)}
 
   /* alumni */
   .alumni-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
@@ -75,7 +94,7 @@
     <div class="sec-t"><span>Principal Investigator</span><span class="ln"></span></div>
     <!-- ▼ 교수님 정보 수정: 사진은 photo-url 안에 images/park.jpg 넣으면 됩니다 (비우면 이니셜) -->
     <div class="pi">
-      <div class="photo" data-photo="">HJP</div>
+      <div class="photo" data-photo="images/members/박현지 프로필사진.jpg">HJP</div>
       <div>
         <h2>Hyun-Ji Park, Ph.D.</h2>
         <div class="title">Assistant Professor · Dept. of Molecular Science &amp; Technology, Ajou University</div>
@@ -94,55 +113,54 @@
          ● 새 멤버 추가: <div class="m"> ... </div> 블록 하나 복사해 붙이고 글자만 교체.
          ● av 의 data-photo 에 images/파일명.jpg 를 넣으면 사진, 비우면 이니셜 원.
          ● class="mascot" 을 붙이면 골드 아바타 (마스코트용).
+         ● class="bio" → 카드를 클릭하면 뜨는 상세 설명. 여기에 자세한 소개를 적으세요.
+                          (지금은 기본 설명이라, 실제 소개 글로 바꾸면 됩니다.)
          ################################################################### -->
     <div class="grid" id="members">
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="HP"></div>
-        <h3>Hye-Min Park</h3>
-        <div class="role">M.S. Candidate</div>
-        <div class="deg">B.S. Ajou Univ. '24</div>
-        <div class="topic">EV engineering · Bioinformatics</div>
-      </div>
-
-      <div class="m">
-        <div class="av" data-photo="" data-initial="CK"></div>
+        <div class="av" data-photo="images/members/김채린.jpg" data-initial="CK"></div>
         <h3>Chae-Lin Kim</h3>
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Ajou Univ. '24</div>
         <div class="topic">EV engineering · Vessel organoids</div>
+        <p class="bio">Chae-Lin works on EV engineering and blood-vessel organoid models, building vascular systems to study tissue repair and regeneration.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="HH"></div>
+        <div class="av" data-photo="images/members/황현준.JPG" data-initial="HH"></div>
         <h3>Hyeonjun Hwang</h3>
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Cheongju Univ. '23</div>
         <div class="topic">Liposome engineering · Reverse-aging</div>
+        <p class="bio">Hyeonjun focuses on liposome engineering and reverse-aging strategies, designing nanocarriers for regenerative and anti-aging applications.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="MP"></div>
+        <div class="av" data-photo="images/members/박민선.jpg" data-initial="MP"></div>
         <h3>Min-Seon Park</h3>
         <div class="role">M.S. Candidate</div>
         <div class="deg">B.S. Ajou Univ. '25</div>
         <div class="topic">iPSC · Cell therapy</div>
+        <p class="bio">Min-Seon studies iPSC-based platforms and cell therapy, with a focus on pulmonary and cardiovascular development.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="MP"></div>
+        <div class="av" data-photo="images/members/박민서.png" data-initial="MP"></div>
         <h3>Minseo Park</h3>
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Ajou Univ. '25</div>
         <div class="topic">Bioinformatics · Skin organoids</div>
+        <p class="bio">Minseo integrates bioinformatics with skin organoid models to investigate aging and immune-cell interactions in tissue.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="DY"></div>
+        <div class="av" data-photo="images/members/유다혜.jpg" data-initial="DY"></div>
         <h3>Dahye You</h3>
         <div class="role">M.S. Candidate</div>
         <div class="deg">B.S. Ajou Univ. '26</div>
         <div class="topic">Skin organoids</div>
+        <p class="bio">Dahye builds skin organoid models to study tissue-specific biology and disease.</p>
       </div>
 
       <div class="m">
@@ -151,22 +169,43 @@
         <div class="role">Researcher</div>
         <div class="deg">Research Staff</div>
         <div class="topic"></div>
+        <p class="bio">Sumin supports the lab's experimental research as a staff scientist.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="GC"></div>
+        <div class="av" data-photo="images/members/조규원.jpg" data-initial="GC"></div>
         <h3>Gyu Won Cho</h3>
         <div class="role">Undergraduate Intern</div>
         <div class="deg">Since 2026.01</div>
         <div class="topic"></div>
+        <p class="bio">Gyu Won is an undergraduate intern exploring cell therapy and bioinformatics research.</p>
       </div>
 
       <div class="m">
-        <div class="av" data-photo="" data-initial="IS"></div>
+        <div class="av" data-photo="images/members/서인원.jpg" data-initial="IS"></div>
         <h3>In-Won Seo</h3>
         <div class="role">Undergraduate Intern</div>
         <div class="deg">Since 2026.07</div>
         <div class="topic"></div>
+        <p class="bio">In-Won is an undergraduate intern gaining hands-on experience across the lab's projects.</p>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="images/members/주은진.jpg" data-initial="EJ"></div>
+        <h3>Eun-Jin Ju</h3>
+        <div class="role">Undergraduate Intern</div>
+        <div class="deg"></div>
+        <div class="topic">Vascular organoids</div>
+        <p class="bio">Eun-Jin is an undergraduate intern studying vascular organoid models.</p>
+      </div>
+
+      <div class="m">
+        <div class="av" data-photo="images/members/최예지.jpg" data-initial="AC"></div>
+        <h3>Audrey Choi</h3>
+        <div class="role">Undergraduate Intern</div>
+        <div class="deg"></div>
+        <div class="topic">Aging · Stem cell</div>
+        <p class="bio">Audrey is an undergraduate intern studying aging and stem cell biology.</p>
       </div>
 
       <div class="m mascot">
@@ -175,6 +214,7 @@
         <div class="role">Lab Mascot</div>
         <div class="deg">Joined Aug 2024</div>
         <div class="topic"></div>
+        <p class="bio">Seok-Gu is the beloved lab mascot, keeping morale high since August 2024. 🐾</p>
       </div>
 
     </div>
@@ -213,7 +253,7 @@
         <div>
           <h3>Hye-min Park</h3>
           <div class="when">Master's student · 2024–2026</div>
-          <div class="now">→ CTBiL</div>
+          <div class="now">→ KFDA (MFDS)</div>
         </div>
       </div>
 
@@ -250,6 +290,23 @@
 
 <footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
 
+<!-- 멤버 상세 팝업 -->
+<div class="modal" id="modal">
+  <div class="mcard">
+    <button class="mx" onclick="closeModal()" aria-label="close">✕</button>
+    <div class="mtop">
+      <div class="mav" id="m-av"></div>
+      <div>
+        <h3 id="m-name"></h3>
+        <div class="mrole" id="m-role"></div>
+        <div class="mdeg" id="m-deg"></div>
+      </div>
+    </div>
+    <div class="mtopic" id="m-topic"></div>
+    <div class="mbio" id="m-bio"></div>
+  </div>
+</div>
+
 <script>
 /* ===== 아바타 채우기 (사진 있으면 사진, 없으면 이니셜) — 수정 불필요 ===== */
 document.querySelectorAll('.av, .av2, .pi .photo').forEach(el=>{
@@ -260,6 +317,33 @@ document.querySelectorAll('.av, .av2, .pi .photo').forEach(el=>{
     if(ini!==null && el.textContent.trim()==='') el.textContent=ini;
   }
 });
+
+/* ===== 멤버 카드 클릭 → 상세 팝업 — 수정 불필요 ===== */
+const modal=document.getElementById('modal');
+document.querySelectorAll('#members .m').forEach(card=>{
+  const hint=document.createElement('div'); hint.className='more'; hint.textContent='View profile →';
+  card.appendChild(hint);
+  card.addEventListener('click',()=>openMember(card));
+});
+function openMember(card){
+  const av=card.querySelector('.av');
+  const mav=document.getElementById('m-av');
+  if(av.style.backgroundImage){ mav.style.backgroundImage=av.style.backgroundImage; mav.textContent=''; }
+  else{ mav.style.backgroundImage=''; mav.textContent=av.textContent; }
+  mav.style.background = card.classList.contains('mascot') && !av.style.backgroundImage
+    ? 'linear-gradient(135deg,#B08D3C,#e0c37f)' : '';
+  if(av.style.backgroundImage) mav.style.backgroundImage=av.style.backgroundImage;
+  document.getElementById('m-name').textContent = card.querySelector('h3')?.textContent||'';
+  document.getElementById('m-role').textContent = card.querySelector('.role')?.textContent||'';
+  document.getElementById('m-deg').textContent = card.querySelector('.deg')?.textContent||'';
+  const topic=card.querySelector('.topic')?.textContent||'';
+  const mt=document.getElementById('m-topic'); mt.textContent=topic; mt.style.display=topic?'inline-block':'none';
+  document.getElementById('m-bio').innerHTML = card.querySelector('.bio')?.innerHTML||'';
+  modal.classList.add('open');
+}
+function closeModal(){ modal.classList.remove('open'); }
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 </script>
 </body>
 </html>
