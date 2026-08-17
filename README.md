@@ -10,9 +10,9 @@
 
 | 파일 | 페이지 | 설명 |
 |------|--------|------|
-| `index.html` | 대문(홈) | 히어로 · 연구 소개 · 최근 논문/뉴스 · 채용 배너 |
+| `index.html` | 대문(홈) | 히어로(단체사진 배경) · 연구 소개 · 최근 논문/뉴스(자동) · 채용 배너 |
 | `team.html` | 팀 | PI 프로필 + 구성원 카드 |
-| `research.html` | 연구 | 연구 주제 3개 영역 |
+| `research.html` | 연구 | 연구 주제 5개 영역 |
 | `publications.html` | 논문 | 연도별 논문 목록 (필터 · 배지) |
 | `patents.html` | 특허 | 특허 목록 (등록/출원 배지) |
 | `news.html` | 뉴스 | 날짜순 타임라인 (태그 색상 구분) |
@@ -55,6 +55,9 @@
 - `title` — 논문 제목
 - `journal` — 저널명·권·호·페이지
 - `link` — 논문/DOI 주소 (없으면 비워두기 → DOI 버튼이 안 보임)
+- `abbr` — 지금은 화면에 **표시되지 않습니다**(썸네일 제거). 비워둬도 되고, 그대로 둬도 무방합니다.
+
+> 💡 **대문 자동 반영**: 대문(홈)의 "Recent Publications"는 이 파일에서 **가장 최근 발행 논문 3편**을 자동으로 불러옵니다. `year="Submitted"`(심사중)는 대문에서는 제외됩니다. 새 논문을 **맨 위**에 추가하면 대문도 자동으로 바뀌므로 `index.html`은 따로 고칠 필요가 없습니다.
 
 ---
 
@@ -63,18 +66,20 @@
 `▼▼▼ 뉴스 목록 ▼▼▼` 아래에 복사해 **맨 위**에 붙여넣으세요.
 
 ```html
-<article date="August 2026" type="award" label="Award">
-  <p class="title">여기에 소식 제목</p>
-  <p class="desc">한두 줄 설명을 적습니다.</p>
-  <p class="img"></p>
+<article date="2026.08.17" type="award" label="Award">
+  <p class="txt">여기에 소식 본문을 적습니다. 강조는 &lt;b&gt;이름&lt;/b&gt; 처럼, 링크는 &lt;a href="주소"&gt;Link&lt;/a&gt; 로.</p>
+  <p class="imgs">images/사진1.jpg
+images/사진2.jpg</p>
 </article>
 ```
 
-- `date` — 날짜 (예: `August 2026`)
-- `type` — 태그 색상: `award`(수상·금) / `talk`(발표·파랑) / `career`(진로·초록) / `grant`(연구비·보라) / `recruit`(모집·남색)
-- `label` — 태그에 보일 글자 (예: `Award`)
-- `title` / `desc` — 제목 / 설명
-- `img` — 사진 주소 (없으면 비워두기). 예: `images/isscr2026.jpg`
+- `date` — 날짜 (예: `2026.08.17`)
+- `type` — 태그 색상: `award`(수상·금) / `talk`(발표·파랑) / `career`(진로·초록) / `grant`(연구비·보라) / `event`(행사·청록) / `paper`(논문·남색)
+- `label` — 태그에 보일 글자 (예: `Award`, `Career`, `Scholarship`)
+- `txt` — 소식 본문 (여러 문장 가능)
+- `imgs` — 사진 주소들. 여러 장이면 **줄바꿈 또는 공백**으로 나열, 없으면 비워두기. 예: `images/isscr2026.jpg`
+
+> 💡 **대문 자동 반영**: 대문(홈)의 "Latest News"는 이 파일의 **가장 최근 소식 3개**를 자동으로 불러옵니다. 새 소식을 **맨 위**에 추가하면 대문도 자동으로 바뀝니다.
 
 ---
 
@@ -94,7 +99,14 @@
 
 ## 👥 팀원 추가하기 (`team.html`)
 
-`▼▼▼ 구성원 ▼▼▼` 아래에서 `<div class="m"> ... </div>` 블록 하나를 복사해 붙이고 이름·직책·학위·주제를 바꾸세요. 사진이 있으면 `data-photo=""` 안에 `images/파일명.jpg` 를 넣고, 없으면 `data-initial="HP"` 의 이니셜 원이 표시됩니다.
+`▼▼▼ 구성원 ▼▼▼` 아래에서 `<div class="m"> ... </div>` 블록 하나를 복사해 붙이고 아래 칸을 바꾸세요.
+
+- `<h3>` — 이름
+- `class="role"` — 직책 (예: `Ph.D. Student`, `Undergraduate Intern`)
+- `class="deg"` — 소속·학교·기간 (예: `UCLA`, `Since 2026.07`)
+- `class="topic"` — 연구 주제 (예: `Vascular organoid engineering`)
+- `class="bio"` — 소개 문장 (카드를 눌렀을 때 뜨는 프로필 내용)
+- 사진: `data-photo="images/members/파일명.jpg"` 에 넣고, 없으면 `data-initial="HP"` 의 이니셜 원이 표시됩니다. (팀원 사진은 `images/members/` 폴더에 올립니다)
 
 ## 📜 특허 추가하기 (`patents.html`)
 
