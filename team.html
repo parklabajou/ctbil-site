@@ -35,18 +35,44 @@
   .pi .links a{display:inline-block;font-size:13px;font-weight:600;color:var(--blue);border:1px solid var(--line);padding:6px 14px;border-radius:20px;margin-right:8px;transition:all .15s}
   .pi .links a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-  /* member grid */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
-  .m{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-align:center;transition:transform .16s ease,box-shadow .16s ease}
+  /* PI 상세 CV (펼침) */
+  .cv{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin:-32px 0 56px;overflow:hidden}
+  .cv>summary{list-style:none;cursor:pointer;padding:18px 26px;font-family:'Space Grotesk';font-weight:600;font-size:15px;color:var(--navy);display:flex;align-items:center;justify-content:space-between}
+  .cv>summary::-webkit-details-marker{display:none}
+  .cv>summary::after{content:"▾";color:var(--blue);transition:transform .2s ease}
+  .cv[open]>summary::after{transform:rotate(180deg)}
+  .cv>summary:hover{background:var(--bg)}
+  .cv-body{padding:8px 26px 26px;border-top:1px solid var(--line)}
+  .cv-sec{margin-top:22px}
+  .cv-sec>h4{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  .cv-item{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .cv-item:last-child{border-bottom:none}
+  .cv-item b{font-weight:600;font-size:14px;color:var(--ink)}
+  .cv-item .sub{color:var(--muted);font-size:13px}
+  .cv-item .adv{color:var(--muted);font-size:12.5px;font-style:italic}
+  .cv-item time{color:var(--blue2);font-weight:600;font-size:12.5px;white-space:nowrap;font-family:'Space Grotesk'}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:680px){.cv-grid{grid-template-columns:1fr}}
+  .cv-sec ul{list-style:none;margin:0;padding:0}
+  .cv-sec li{position:relative;padding-left:16px;font-size:13.5px;color:var(--ink);margin-bottom:9px;line-height:1.5}
+  .cv-sec li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+  /* member grid — 한 줄에 3명 */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  .m{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 22px;text-align:center;transition:transform .16s ease,box-shadow .16s ease}
   .m:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
-  .m .av{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:28px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
-  .m h3{font-size:16.5px;font-weight:600;margin-bottom:3px}
+  /* 큰 정사각형 얼굴사진 */
+  .m .av{width:100%;aspect-ratio:1/1;border-radius:14px;margin:0 0 16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:56px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
+  .m h3{font-size:18px;font-weight:600;margin-bottom:3px}
   .m .role{font-size:12.5px;font-weight:700;color:var(--blue2);margin-bottom:8px}
   .m .deg{font-size:12.5px;color:var(--muted)}
   .m .topic{font-size:12.5px;color:var(--muted);margin-top:6px;font-style:italic}
   .m.mascot .av{background:linear-gradient(135deg,var(--gold),#e0c37f)}
   .m{cursor:pointer}
   .m .bio{display:none}
+  .m .email{display:none}
   .m .more{margin-top:13px;font-size:11.5px;font-weight:700;color:var(--blue);opacity:.6;transition:opacity .15s}
   .m:hover .more{opacity:1}
 
@@ -58,10 +84,12 @@
   .mx{position:absolute;top:16px;right:18px;width:36px;height:36px;border:none;border-radius:50%;background:var(--bg);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .mx:hover{background:#e7ecf3;color:var(--ink)}
   .mtop{display:flex;gap:20px;align-items:center;margin-bottom:18px}
-  .mav{width:92px;height:92px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:32px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
+  .mav{width:104px;height:104px;flex:none;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:34px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
   .mcard h3{font-size:22px;font-weight:600;margin-bottom:4px}
   .mrole{font-size:13.5px;font-weight:700;color:var(--blue2)}
   .mdeg{font-size:13px;color:var(--muted);margin-top:2px}
+  .memail{display:inline-block;font-size:12.5px;font-weight:600;color:var(--blue);margin-top:6px}
+  .memail:hover{text-decoration:underline}
   .mtopic{display:inline-block;font-size:12.5px;font-weight:600;color:var(--navy);background:#EAF1FA;border:1px solid #DCE7F4;padding:5px 13px;border-radius:20px;margin-bottom:16px}
   .mbio{font-size:14.5px;line-height:1.7;color:var(--ink)}
 
@@ -97,7 +125,7 @@
       <div class="photo" data-photo="images/members/HJPark.jpg">HJP</div>
       <div>
         <h2>Hyun-Ji Park, Ph.D.</h2>
-        <div class="title">Assistant Professor · Dept. of Molecular Science &amp; Technology, Ajou University</div>
+        <div class="title">Associate Professor · College of Advanced Bio-Convergence Engineering, Ajou University</div>
         <p>Prof. Park leads the Cell Therapy &amp; Bioinformatics Lab, combining computational and experimental approaches to develop next-generation regenerative therapeutics — extracellular vesicles, organoids, and immune-modulating cell therapies for inflammatory and cardiovascular disease.</p>
         <div class="links">
           <a href="mailto:hyunjipark@ajou.ac.kr">✉ hyunjipark@ajou.ac.kr</a>
@@ -105,6 +133,55 @@
         </div>
       </div>
     </div>
+
+    <!-- ▼ 교수님 상세 CV (수정: 아래 내용만 바꾸면 됩니다) -->
+    <details class="cv">
+      <summary>Full CV — Appointments · Education · Honors · Memberships</summary>
+      <div class="cv-body">
+
+        <div class="cv-sec">
+          <h4>Appointments</h4>
+          <div class="cv-item"><div><b>Associate Professor</b> · Ajou University, Suwon, Korea<div class="sub">College of Advanced Bio-Convergence Engineering</div></div><time>09/2026 – Present</time></div>
+          <div class="cv-item"><div><b>Assistant Professor</b> · Ajou University, Suwon, Korea<div class="sub">Department of Molecular Science and Technology</div></div><time>09/2022 – 08/2026</time></div>
+          <div class="cv-item"><div><b>Postdoctoral Associate</b> · Emory University, Atlanta, GA<div class="adv">Advisor: Michael E. Davis, Ph.D.</div></div><time>05/2019 – 07/2022</time></div>
+          <div class="cv-item"><div><b>Postdoctoral Associate</b> · Georgia Institute of Technology, Atlanta, GA<div class="adv">Advisor: YongTae Kim, Ph.D.</div></div><time>01/2018 – 04/2019</time></div>
+          <div class="cv-item"><div><b>Postdoctoral Associate</b> · Yonsei University, Seoul, Korea<div class="adv">Advisor: Seung-Woo Cho, Ph.D.</div></div><time>03/2017 – 12/2017</time></div>
+        </div>
+
+        <div class="cv-sec">
+          <h4>Education</h4>
+          <div class="cv-item"><div><b>Ph.D.</b> · Yonsei University, South Korea<div class="sub">Biological Engineering</div></div><time>2012 – 2017</time></div>
+          <div class="cv-item"><div><b>M.Sc.</b> · Yonsei University, South Korea<div class="sub">Biological Engineering</div></div><time>2010 – 2012</time></div>
+          <div class="cv-item"><div><b>B.Sc.</b> · Ajou University, South Korea<div class="sub">Applied Chemistry and Biological Engineering</div></div><time>2003 – 2007</time></div>
+        </div>
+
+        <div class="cv-grid">
+          <div class="cv-sec">
+            <h4>Honors &amp; Awards</h4>
+            <ul>
+              <li>2024 아주대학교 연구우수교수상</li>
+              <li>2024 미원상사 신진과학자상</li>
+              <li>2021 American Heart Association (AHA), Postdoctoral Fellowship</li>
+              <li>2017 한국 로레알-유네스코 여성과학자상 펠로우쉽</li>
+              <li>2015 연세대학교 대학원 우수논문상</li>
+              <li>2014 한국연구재단·한국줄기세포학회 Young Investigator Award</li>
+            </ul>
+          </div>
+          <div class="cv-sec">
+            <h4>Memberships</h4>
+            <ul>
+              <li>한국 조직공학재생의학회 신진연구자위원회 이사 ('23 ~ 현재)</li>
+              <li>한국 공업화학회 생체재료분과회 학술간사 ('23 ~ 현재), 학술위원(추계) ('24 ~ 현재)</li>
+              <li>한국 생체재료학회 학술위원회 위원 ('23 ~ 현재)</li>
+              <li>한국 생물공학회 홍보소식위원회 위원, BT News 편집위원 ('23)</li>
+              <li>EV-TRACK Task Force member (Working Group 3), International Society for Extracellular Vesicles ('24 ~ 현재)</li>
+              <li>Journal of Extracellular Biology, Board Reviewer</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </details>
 
     <!-- ============ MEMBERS ============ -->
     <div class="sec-t"><span>Members</span><span class="ln"></span></div>
@@ -124,7 +201,8 @@
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Ajou Univ. '24</div>
         <div class="topic">EV engineering · Vascular organoids</div>
-        <p class="bio">Chae-Lin works on EV engineering and blood-vessel organoid models, building vascular systems to study tissue repair and regeneration.</p>
+        <p class="email">fls1417@ajou.ac.kr</p>
+        <p class="bio">Hi! I'm currently pursuing a Integrated MS-PhD's degree in Molecular Science &amp; Technology at Ajou University, after graduating with a degree in Applied Chemistry &amp; Biological Engineering. My research focuses on developing treatment strategies using stem cells and extracellular vesicles, and I'm deeply passionate about exploring the potential of these exciting fields.<br><br>Outside of research, I'm a huge KT Wiz supporter and the number one fan of T1. I enjoy keeping things relaxed and am a balanced mix of introvert and extrovert—49% introvert, 51% extrovert.</p>
       </div>
 
       <div class="m">
@@ -133,7 +211,8 @@
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Cheongju Univ. '23</div>
         <div class="topic">Liposome engineering · Reverse-aging</div>
-        <p class="bio">Hyeonjun focuses on liposome engineering and reverse-aging strategies, designing nanocarriers for regenerative and anti-aging applications.</p>
+        <p class="email">hyeonjun0809@ajou.ac.kr</p>
+        <p class="bio">Hello! I'm currently studying at Ajou University's Department of Molecular Science and Technology. I previously graduated from Cheongju University's Department of Biomedical Sciences. My research interests include drug delivery using liposomes and extracellular vesicles. I'm excited to explore human-friendly treatment strategies through these methods.</p>
       </div>
 
       <div class="m">
@@ -142,7 +221,8 @@
         <div class="role">M.S. Candidate</div>
         <div class="deg">B.S. Ajou Univ. '25</div>
         <div class="topic">iPSC · Cell therapy</div>
-        <p class="bio">Min-Seon studies iPSC-based platforms and cell therapy, with a focus on pulmonary and cardiovascular development.</p>
+        <p class="email">dooolylink@ajou.ac.kr</p>
+        <p class="bio">Hello! I'm an master's student at CTBi Lab. I'm particularly interested in stem cells and aspire to conduct research in cell therapy. I've joined this lab to work hard, learn, and gain valuable research experience. I work with Seunguk on the iPSC team, focusing on immune cell and cardiac differentiation of iPSCs.</p>
       </div>
 
       <div class="m">
@@ -151,7 +231,8 @@
         <div class="role">Integrated M.S.–Ph.D.</div>
         <div class="deg">B.S. Ajou Univ. '25</div>
         <div class="topic">Bioinformatics · Skin organoids</div>
-        <p class="bio">Minseo integrates bioinformatics with skin organoid models to investigate aging and immune-cell interactions in tissue.</p>
+        <p class="email">minsea@ajou.ac.kr</p>
+        <p class="bio">Hello! I am a graduate student at Ajou University. Currently, I'm working at the intersection of skin organoid research and single-cell bioinformatics. I am interested in understanding how individual cell types behave and interact in disease states, using single-cell transcriptomics to uncover these cell-specific mechanisms and organoid models to test and develop potential therapies.</p>
       </div>
 
       <div class="m">
@@ -160,7 +241,8 @@
         <div class="role">M.S. Candidate</div>
         <div class="deg">B.S. Ajou Univ. '26</div>
         <div class="topic">Skin organoids</div>
-        <p class="bio">Dahye builds skin organoid models to study tissue-specific biology and disease.</p>
+        <p class="email">hanpharm2@ajou.ac.kr</p>
+        <p class="bio">I am Dahye You, a graduate of Ajou University's Department of Applied Chemistry and Biological Engineering. My vision is to advance regenerative medicine through stem cell–based technologies. My main research focus is on skin organoids and iPSC-derived T cells. By integrating stem cell biology and bioengineering, I hope to contribute to innovative therapeutic strategies.</p>
       </div>
 
       <div class="m">
@@ -178,7 +260,7 @@
         <div class="role">Undergraduate Intern</div>
         <div class="deg">Since 2026.01</div>
         <div class="topic"></div>
-        <p class="bio">Gyu Won is an undergraduate intern exploring cell therapy and bioinformatics research.</p>
+        <p class="bio">I am an undergraduate student majoring in Applied Chemical and Biological Engineering. Since I was young, I have always been fascinated by body regeneration and immortality in media. In particular, I found myself projecting my own experiences into the repetitive process of injury and healing, which naturally led me to this field. Currently, I am interested in exploring regenerative therapies and organoids using stem cells.</p>
       </div>
 
       <div class="m">
@@ -187,7 +269,7 @@
         <div class="role">Undergraduate Intern</div>
         <div class="deg">Since 2026.07</div>
         <div class="topic">Bioinformatics · Vascular organoids</div>
-        <p class="bio">In-Won is an undergraduate intern gaining hands-on experience across the lab's projects.</p>
+        <p class="bio">I am Seo In-won, majoring in Applied Chemical and Biological Engineering. My main field of interest is bioinformatics, and I am interested in data analysis research using bioinformatics analysis tools.</p>
       </div>
 
       <div class="m">
@@ -214,7 +296,7 @@
         <div class="role">Lab Mascot</div>
         <div class="deg">2024.08 ~ 2026.05</div>
         <div class="topic"></div>
-        <p class="bio">Seok-Gu is the beloved lab mascot, keeping morale high since August 2024. 🐾</p>
+        <p class="bio">Seok-Gu the Dog may not have experience with pipettes, but he's a master of comfort and support (with plenty of snuggles). He's excited to meet new friends who appreciate life's simple pleasures, like treats, and he's always ready to share his expertise on 'getting the perfect amount of sleep' and 'destroying toys in record time.'</p>
       </div>
 
       <div class="m mascot">
@@ -223,7 +305,7 @@
         <div class="role">Lab Mascot</div>
         <div class="deg">Since 2026.06</div>
         <div class="topic"></div>
-        <p class="bio">Seok-Hee is the beloved lab mascot, keeping morale high since June 2026. 🐾</p>
+        <p class="bio">Shy and easily startled around new people, Seok-Hee gets scared quite easily — but once you become friends, this little one turns into a total bundle of affection. 🐾</p>
       </div>
       
     </div>
@@ -309,6 +391,7 @@
         <h3 id="m-name"></h3>
         <div class="mrole" id="m-role"></div>
         <div class="mdeg" id="m-deg"></div>
+        <a class="memail" id="m-email" target="_blank" rel="noopener"></a>
       </div>
     </div>
     <div class="mtopic" id="m-topic"></div>
@@ -345,6 +428,9 @@ function openMember(card){
   document.getElementById('m-name').textContent = card.querySelector('h3')?.textContent||'';
   document.getElementById('m-role').textContent = card.querySelector('.role')?.textContent||'';
   document.getElementById('m-deg').textContent = card.querySelector('.deg')?.textContent||'';
+  const email=(card.querySelector('.email')?.textContent||'').trim();
+  const me=document.getElementById('m-email');
+  if(email){ me.textContent='✉ '+email; me.href='mailto:'+email; me.style.display='inline-block'; } else { me.style.display='none'; }
   const topic=card.querySelector('.topic')?.textContent||'';
   const mt=document.getElementById('m-topic'); mt.textContent=topic; mt.style.display=topic?'inline-block':'none';
   document.getElementById('m-bio').innerHTML = card.querySelector('.bio')?.innerHTML||'';
