@@ -636,8 +636,7 @@ function render(filter){
       const badges=p.tags.map(t=>`<span class="badge">${t}</span>`).join('');
       const doi=p.link?`<a class="doi" href="${p.link}" target="_blank" rel="noopener">DOI ↗</a>`:'';
       const el=document.createElement('div'); el.className='pub';
-      const thumb = p.year==='Submitted' ? '' : `<div class="th">${p.abbr}</div>`;
-      el.innerHTML=`${thumb}
+      el.innerHTML=`
         <div style="flex:1">
           <div class="yr">${p.year}</div>
           <h3>${p.title}</h3>
