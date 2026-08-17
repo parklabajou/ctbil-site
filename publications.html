@@ -40,8 +40,13 @@
   .yeargroup.collapsible:hover .pubs,.yeargroup.collapsible.open .pubs{max-height:6000px;opacity:1}
   .yeargroup.collapsible:hover .hint .chev,.yeargroup.collapsible.open .hint .chev{display:inline-block;transform:rotate(180deg)}
   .yeargroup .hint .chev{display:inline-block;transition:transform .3s ease}
-  .pub{display:flex;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;transition:transform .15s ease,box-shadow .15s ease}
+  .pub{position:relative;display:flex;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;transition:transform .15s ease,box-shadow .15s ease}
   .pub:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
+  .pub.link{cursor:pointer}
+  .pub.link:hover{border-color:var(--blue)}
+  .pub.link:hover h3{color:var(--blue)}
+  .pub.link::after{content:"↗";position:absolute;top:16px;right:18px;font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--blue);opacity:0;transition:opacity .15s ease}
+  .pub.link:hover::after{opacity:1}
   .pub .th{width:76px;height:76px;flex:none;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:12px;text-align:center;padding:6px;line-height:1.2}
   .pub .yr{font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--blue2)}
   .pub h3{font-size:16px;font-weight:600;line-height:1.4;margin:3px 0 6px}
@@ -643,15 +648,15 @@ function render(filter){
     g.innerHTML=`<div class="yh"><h2>${y}</h2><div class="ln"></div><span class="cnt">${group.length} paper${group.length>1?'s':''}${hint}</span></div>`;
     const box=document.createElement('div'); box.className='pubs';
     group.forEach(p=>{
-      const doi=p.link?`<a class="doi" href="${p.link}" target="_blank" rel="noopener">DOI ↗</a>`:'';
-      const el=document.createElement('div'); el.className='pub';
+      const el=document.createElement(p.link?'a':'div');
+      el.className='pub'+(p.link?' link':'');
+      if(p.link){ el.href=p.link; el.target='_blank'; el.rel='noopener'; }
       el.innerHTML=`
         <div style="flex:1">
           <div class="yr">${p.year}</div>
           <h3>${p.title}</h3>
           <div class="au">${p.authors}</div>
           <div class="jn">${p.journal}</div>
-          <div class="meta">${doi}</div>
         </div>`;
       box.appendChild(el);
     });
