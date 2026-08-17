@@ -24,12 +24,27 @@
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+     ▼ 구글 사이트 섹션으로 이동하는 링크 만드는 법 ▼
+     1) 구글 사이트 편집기에서 이동시킬 섹션(예: Conference 사진 묶음)을 클릭
+     2) 섹션 왼쪽에 뜨는 '앵커(⚓)' 아이콘 클릭 → '앵커 링크 복사'
+     3) 아래 href="여기" 안의 REPLACE_... 부분을 복사한 주소로 교체
+        (예: href="https://ctbi.ajou.ac.kr/gallery#h.abcd1234")
+     * target="_top" 은 iframe(임베드) 안이 아니라 '전체 페이지'가 스크롤되게 하는 것이라
+       반드시 그대로 두세요. 지우면 링크가 작동하지 않습니다.
+     ============================================================ -->
+
 <header class="phead">
   <div class="wrap">
     <div class="kick">Gallery</div>
     <h1>Life at CTBiL</h1>
     <p>Moments from the lab — everyday research life, conferences and seminars, and the celebrations we share along the way.</p>
-    <div class="tags"><span>Conference</span><span>Anniversary</span><span>Lab activity</span></div>
+    <div class="tags">
+      <a target="_top" href="REPLACE_CONFERENCE_ANCHOR_LINK">Conference</a>
+      <a target="_top" href="REPLACE_ANNIVERSARY_ANCHOR_LINK">Anniversary</a>
+      <a target="_top" href="REPLACE_LAB_ACTIVITY_ANCHOR_LINK">Lab activity</a>
+    </div>
   </div>
 </header>
 </body>
