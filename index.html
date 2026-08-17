@@ -27,7 +27,7 @@
   a{text-decoration:none;color:inherit}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,var(--navy) 0%,var(--blue2) 60%,var(--blue) 120%)}
+  .hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(120deg,rgba(0,23,58,.92) 0%,rgba(0,31,78,.82) 42%,rgba(9,58,140,.62) 100%),url('images/hero.jpg') center 34%/cover no-repeat}
   .hero::after{content:"";position:absolute;right:-160px;top:-120px;width:460px;height:460px;background:radial-gradient(circle,rgba(155,203,235,.4),transparent 68%);border-radius:50%}
   .hero::before{content:"";position:absolute;left:-140px;bottom:-180px;width:420px;height:420px;background:radial-gradient(circle,rgba(176,141,60,.28),transparent 70%);border-radius:50%}
   .hero .wrap{position:relative;z-index:1;padding:96px 28px 92px}
@@ -72,7 +72,7 @@
   .pub-item:last-child{border-bottom:none}
   .pub-item .th{width:60px;height:60px;flex:none;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:11px;text-align:center;padding:5px;line-height:1.15}
   .pub-item .yr{font-size:11px;font-weight:700;color:var(--blue2);letter-spacing:.04em}
-  .pub-item h4{font-size:14.5px;font-weight:600;line-height:1.4;margin:2px 0 4px}
+  .pub-item h4{font-size:14.5px;font-weight:600;line-height:1.4;margin:2px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .pub-item .jn{font-size:12.5px;font-style:italic;color:var(--navy)}
 
   .news-item{display:block;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -82,8 +82,11 @@
   .tag.award{background:rgba(176,141,60,.16);color:#7d6220}
   .tag.talk{background:rgba(0,114,206,.12);color:var(--blue2)}
   .tag.career{background:rgba(16,120,80,.12);color:#0b7350}
+  .tag.grant{background:rgba(120,60,160,.12);color:#6a2a94}
+  .tag.event{background:rgba(18,160,160,.13);color:#0c7c7c}
+  .tag.paper{background:rgba(0,47,108,.1);color:var(--navy)}
   .news-item .date{font-size:12px;color:var(--muted)}
-  .news-item h4{font-size:14.5px;font-weight:600;line-height:1.4}
+  .news-item h4{font-size:14.5px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* ---------- JOIN CTA ---------- */
   .join{background:linear-gradient(135deg,var(--navy),var(--blue2));color:#fff;border-radius:24px;padding:52px 48px;position:relative;overflow:hidden}
@@ -126,7 +129,7 @@
       <div class="rcard">
         <div class="ic"><img src="images/ic-organoid.png" alt=""></div>
         <h3>Organoid-Based Disease Modeling</h3>
-        <p>Building skin, vascular, and cardiac organoids and assembloids — including decellularized-ECM skin organoids — to model disease.</p>
+        <p>Building skin, vascular, and cardiac organoids and assembloids to model development &amp; disease.</p>
       </div>
       <div class="rcard">
         <div class="ic"><img src="images/ic-immune.png" alt=""></div>
@@ -134,14 +137,9 @@
         <p>iPSC-derived regenerative macrophages and immune cells for vascular repair and control of inflammation.</p>
       </div>
       <div class="rcard">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 18l5-5 4 4 7-8"/><path d="M4 4v16h16"/></svg></div>
-        <h3>Bioinformatics</h3>
-        <p>Single-cell RNA sequencing (scRNA-seq) and predictive computational modeling to map molecular pathways and pinpoint therapeutic targets.</p>
-      </div>
-      <div class="rcard">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 8v4l3 2"/><path d="M3.5 9a9 9 0 1 1-.5 3"/><path d="M3 5v4h4"/></svg></div>
         <h3>Anti-Aging &amp; Cellular Rejuvenation</h3>
-        <p>ROS/RNS-releasing GHPA hydrogels and aging-on-a-chip platforms that delay cellular senescence and rejuvenate stem cells.</p>
+        <p>ROS/RNS-releasing platforms that delay cellular senescence and rejuvenate stem cells.</p>
       </div>
     </div>
     <!-- ▲▲▲ 연구 소개 카드 끝 ▲▲▲ -->
@@ -155,7 +153,8 @@
       <!-- Recent Publications -->
       <div class="hl-col">
         <h3 class="col-t"><span class="bar"></span>Recent Publications <a class="more" href="publications.html">View all →</a></h3>
-        <!-- ▼ 최근 논문 2~3개 (전체는 publications.html에서 관리) -->
+        <!-- ▼ publications.html 에서 자동으로 불러옵니다 (수정 불필요). 아래는 오프라인 미리보기용 예비 표시. -->
+        <div id="home-pubs">
         <a class="pub-item" href="publications.html">
           <div><div class="yr">2026</div><h4>Preservation of extracellular vesicle integrity and cargo using spiral microfluidic chip-based separation</h4><div class="jn">Advanced Materials Technologies</div></div>
         </a>
@@ -165,11 +164,13 @@
         <a class="pub-item" href="publications.html">
           <div><div class="yr">2023</div><h4>Knockdown of deleterious miRNA in progenitor cell-derived sEVs</h4><div class="jn">Science Advances 9(9)</div></div>
         </a>
+        </div>
       </div>
       <!-- Latest News -->
       <div class="hl-col">
         <h3 class="col-t"><span class="bar"></span>Latest News <a class="more" href="news.html">View all →</a></h3>
-        <!-- ▼ 최근 뉴스 2~3개 (전체는 news.html에서 관리) -->
+        <!-- ▼ news.html 에서 자동으로 불러옵니다 (수정 불필요). 아래는 오프라인 미리보기용 예비 표시. -->
+        <div id="home-news">
         <a class="news-item" href="news.html">
           <div class="top"><span class="tag award">Award</span><span class="date">2026.07.11</span></div>
           <h4>Minseon and Minseo received the ISSCR 2026 Travel Award and Merit Award</h4>
@@ -182,6 +183,7 @@
           <div class="top"><span class="tag talk">Talk</span><span class="date">2026.05.29</span></div>
           <h4>Minseo presented 'An Immune Cell-integrated Skin Organoid Model' at KSTERM</h4>
         </a>
+        </div>
       </div>
     </div>
   </div>
@@ -202,6 +204,47 @@
 
 <!-- ======================= FOOTER ======================= -->
 <footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
+
+<script>
+/* ===== 첫 화면의 Recent Publications / Latest News 를 각 페이지에서 자동으로 불러옵니다.
+        publications.html · news.html 만 수정하면 이 대문도 자동으로 따라 바뀝니다. (수정 불필요) ===== */
+(function(){
+  var esc=function(s){return (s||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});};
+  function pick(html,sel){var d=new DOMParser().parseFromString(html,'text/html');return [...d.querySelectorAll(sel)];}
+  fetch('publications.html').then(function(r){return r.text();}).then(function(html){
+    var pubs=pick(html,'#pub-data article').map(function(a){
+      return {
+        year:(a.getAttribute('year')||'').trim(),
+        title:(a.querySelector('.title')?a.querySelector('.title').textContent:'').trim(),
+        journal:(a.querySelector('.journal')?a.querySelector('.journal').textContent:'').trim()
+      };
+    }).filter(function(p){return /^\d{4}$/.test(p.year);}).slice(0,3);
+    if(pubs.length){
+      document.getElementById('home-pubs').innerHTML=pubs.map(function(p){
+        return '<a class="pub-item" href="publications.html"><div><div class="yr">'+esc(p.year)+
+               '</div><h4>'+esc(p.title)+'</h4><div class="jn">'+esc(p.journal)+'</div></div></a>';
+      }).join('');
+    }
+  }).catch(function(){});
+  fetch('news.html').then(function(r){return r.text();}).then(function(html){
+    var news=pick(html,'#news-data article').map(function(a){
+      var t=(a.querySelector('.txt')?a.querySelector('.txt').textContent:'').replace(/\s+/g,' ').trim();
+      return {
+        date:(a.getAttribute('date')||'').trim(),
+        type:(a.getAttribute('type')||'event').trim(),
+        label:(a.getAttribute('label')||'').trim(),
+        text:t
+      };
+    }).slice(0,3);
+    if(news.length){
+      document.getElementById('home-news').innerHTML=news.map(function(n){
+        return '<a class="news-item" href="news.html"><div class="top"><span class="tag '+esc(n.type)+
+               '">'+esc(n.label)+'</span><span class="date">'+esc(n.date)+'</span></div><h4>'+esc(n.text)+'</h4></a>';
+      }).join('');
+    }
+  }).catch(function(){});
+})();
+</script>
 
 </body>
 </html>
