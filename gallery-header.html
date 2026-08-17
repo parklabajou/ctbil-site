@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery · CTBiL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px}
+  .phead{background:linear-gradient(135deg,var(--navy),var(--blue2) 70%,var(--blue));color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
+  .phead .wrap{position:relative;z-index:1}
+  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
+  .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
+  .phead p{color:#D6E3F2;max-width:600px;font-size:15.5px}
+  .tags{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+  .tags span{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:6px 15px;border-radius:22px}
+</style>
+</head>
+<body>
+<header class="phead">
+  <div class="wrap">
+    <div class="kick">Gallery</div>
+    <h1>Life at CTBiL</h1>
+    <p>Moments from the lab — everyday research life, conferences and seminars, and the celebrations we share along the way.</p>
+    <div class="tags"><span>Lab Life</span><span>Conferences</span><span>Anniversaries</span></div>
+  </div>
+</header>
+</body>
+</html>
