@@ -36,7 +36,7 @@
   .pi .links a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
   .pi{cursor:pointer}
   .pi .links a.pi-view{background:var(--blue);color:#fff;border-color:var(--blue)}
-  .mcard.wide{max-width:720px;max-height:86vh;overflow:auto}
+  .mcard.wide{max-width:720px}
 
   /* PI 상세 CV (펼침) */
   .cv{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin:-32px 0 56px;overflow:hidden}
@@ -80,11 +80,11 @@
   .m:hover .more{opacity:1}
 
   /* member detail modal */
-  .modal{position:fixed;inset:0;background:rgba(6,16,34,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
-  .modal.open{display:flex}
-  .mcard{background:#fff;border-radius:22px;max-width:520px;width:100%;padding:34px 36px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:pop .18s ease}
-  @keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:none;opacity:1}}
-  .mx{position:absolute;top:16px;right:18px;width:36px;height:36px;border:none;border-radius:50%;background:var(--bg);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .modal{position:absolute;left:0;top:0;width:100%;background:rgba(6,16,34,.5);display:none;z-index:100}
+  .modal.open{display:block}
+  .mcard{background:#fff;border-radius:22px;max-width:520px;width:calc(100% - 32px);padding:34px 36px;position:absolute;left:50%;transform:translateX(-50%);box-shadow:0 30px 80px rgba(0,0,0,.45);animation:pop .18s ease;max-height:88vh;overflow-y:auto}
+  @keyframes pop{from{opacity:0}to{opacity:1}}
+  .mx{position:sticky;top:0;float:right;margin:-8px -10px 0 0;width:36px;height:36px;border:none;border-radius:50%;background:var(--bg);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2}
   .mx:hover{background:#e7ecf3;color:var(--ink)}
   .mtop{display:flex;gap:20px;align-items:center;margin-bottom:18px}
   .mav{width:104px;height:104px;flex:none;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:34px;background:linear-gradient(135deg,var(--navy),var(--blue));background-size:cover;background-position:center}
@@ -449,6 +449,9 @@ function openMember(card){
   const topic=card.querySelector('.topic')?.textContent||'';
   const mt=document.getElementById('m-topic'); mt.textContent=topic; mt.style.display=topic?'inline-block':'none';
   document.getElementById('m-bio').innerHTML = card.querySelector('.bio')?.innerHTML||'';
+  const top = card.getBoundingClientRect().top + window.scrollY;
+  modal.querySelector('.mcard').style.top = Math.max(top, 8) + 'px';
+  modal.style.height = document.documentElement.scrollHeight + 'px';
   modal.classList.add('open');
 }
 function closeModal(){ modal.classList.remove('open'); }
@@ -461,6 +464,10 @@ function openPI(){
   const src=document.querySelector('.pi .photo');
   const av=document.getElementById('pi-av');
   if(src && src.style.backgroundImage){ av.style.backgroundImage=src.style.backgroundImage; av.textContent=''; }
+  const piCard=document.querySelector('.pi');
+  const top = piCard.getBoundingClientRect().top + window.scrollY;
+  piModal.querySelector('.mcard').style.top = Math.max(top, 8) + 'px';
+  piModal.style.height = document.documentElement.scrollHeight + 'px';
   piModal.classList.add('open');
 }
 function closePI(){ piModal.classList.remove('open'); }
