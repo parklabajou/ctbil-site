@@ -154,10 +154,4 @@ images/사진2.jpg</p>
    - 대문 → `.../index.html` · 논문 → `.../publications.html` · 뉴스 → `.../news.html` · 갤러리 → `.../gallery.html`
 4. **전체 페이지(Whole page)** 선택 후 상자 높이를 넉넉히 늘리기
 
----
-
-## ❓ 막히면
-
-어느 단계에서 멈췄는지(또는 화면 캡처를) 알려주시면 그대로 도와드릴 수 있습니다.
-
 *© 2026 Cell Therapy & Bioinformatics Lab, Ajou University*
