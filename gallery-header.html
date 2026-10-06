@@ -20,7 +20,10 @@
   .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
   .phead p{color:#D6E3F2;max-width:600px;font-size:15.5px}
   .tags{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
-  .tags span{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:6px 15px;border-radius:22px}
+  .tags a{text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+  .tags a:hover{background:rgba(255,255,255,.28);transform:translateY(-2px)}
+  .tags a.on{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 4px 14px rgba(176,141,60,.45);pointer-events:none}
+  .tags a{font-size:12.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:6px 15px;border-radius:22px}
 </style>
 </head>
 <body>
@@ -29,8 +32,15 @@
     <div class="kick">Gallery</div>
     <h1>Life at CTBiL</h1>
     <p>Moments from the lab — everyday research life, conferences and seminars, and the celebrations we share along the way.</p>
-    <div class="tags"><span>Conference</span><span>Anniversary</span><span>Lab activity</span></div>
+    <div class="tags"><a href="https://ctbi.ajou.ac.kr/Gallery/Conference" target="_top" data-k="conference">Conference</a><a href="https://ctbi.ajou.ac.kr/Gallery/Anniversary" target="_top" data-k="anniversary">Anniversary</a><a href="https://ctbi.ajou.ac.kr/Gallery/Lab-activity" target="_top" data-k="lab-activity">Lab activity</a></div>
   </div>
 </header>
+<script>
+/* 임베드 주소 뒤에 ?active=conference | anniversary | lab-activity 를 붙이면 해당 태그가 금색으로 표시됩니다 */
+(function(){
+  var a=(new URLSearchParams(location.search).get('active')||'').toLowerCase();
+  document.querySelectorAll('.tags a').forEach(function(el){if(el.dataset.k===a)el.classList.add('on')});
+})();
+</script>
 </body>
 </html>
