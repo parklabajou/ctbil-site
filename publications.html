@@ -12,7 +12,7 @@
   :root{
     --navy:#002F6C; --blue:#0072CE; --blue-ink:#0A5DBE; --blue-wash:#EAF3FC;
     --gold:#B08D3C; --gold-ink:#7D6220; --gold-wash:#F7F0DF;
-    --ink:#10233F; --muted:#5A6675; --faint:#97A1AE; --line:#E4E9F0; --soft:#F6F8FB;
+    --sky:#9BCBEB; --ink:#10233F; --muted:#5A6675; --faint:#97A1AE; --line:#E4E9F0; --soft:#F6F8FB;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -21,13 +21,15 @@
   button,input{font:inherit;color:inherit}
   :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px}
 
   /* ---------- Page header ---------- */
-  .top{padding:68px 0 44px}
-  .kicker{font-size:14px;font-weight:600;color:var(--blue)}
-  .top h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(42px,6.6vw,70px);line-height:1;letter-spacing:-.035em;color:var(--navy);margin:10px 0 18px}
-  .lede{max-width:600px;color:var(--muted);font-size:16px}
+  .phead{background:linear-gradient(100deg,rgba(0,23,58,.90),rgba(0,31,78,.74) 48%,rgba(9,58,140,.5)),url('images/hero-pub.jpg') center 40%/cover;color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
+  .phead .wrap{position:relative;z-index:1}
+  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
+  .phead h1{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
+  .phead p{color:#D6E3F2;max-width:560px;font-size:15.5px}
 
   /* ---------- Filter bar ---------- */
   .toolbar{background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);z-index:20}
@@ -85,16 +87,14 @@
   .empty p{margin-bottom:14px}
   .empty button{border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px;font-size:13.5px;font-weight:600;cursor:pointer}
   @media (max-width:560px){
-    .top{padding:40px 0 32px}
-    .wrap{padding:0 20px}
-    .years{margin:0 -20px;padding:0 20px 2px}
+    .yg-h h2{font-size:22px}
     .pub{grid-template-columns:34px minmax(0,1fr);gap:0 14px}
     .num{font-size:16px}
     .title{font-size:15.5px}
   }
 
   /* ---------- Footer & jump buttons ---------- */
-  footer{margin-top:80px;border-top:1px solid var(--line);padding:28px 0 36px;font-size:13px;color:var(--muted)}
+  footer{margin-top:80px;background:#0A1B33;color:#9FB4CE;padding:32px 0;font-size:13px;text-align:center}
   .jump{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:6px;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
   .jump.on{opacity:1;pointer-events:auto}
   .jump button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;color:var(--navy);cursor:pointer;box-shadow:0 4px 14px rgba(16,35,63,.08)}
@@ -107,11 +107,11 @@
 </head>
 <body>
 
-<header class="top">
+<header class="phead">
   <div class="wrap">
-    <p class="kicker">CTBiL · Research output</p>
-    <h1>Publications</h1>
-    <p class="lede">Peer-reviewed work on extracellular vesicles, organoids, stem cell therapeutics and computational biology<span id="range"></span>.</p>
+    <div class="kick">Publications</div>
+    <h1>Peer-Reviewed Research</h1>
+    <p>Our work spans extracellular vesicles, organoids, stem cell therapeutics, and computational biology.</p>
   </div>
 </header>
 
@@ -138,7 +138,7 @@
   <div id="list"></div>
 </main>
 
-<footer><div class="wrap">© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</div></footer>
+<footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
 
 <nav class="jump" id="jump" aria-label="Page scroll">
   <button type="button" data-jump="top">↑ Top</button>
@@ -242,7 +242,7 @@
   
   <article year="2026" tags="Co-corresp.">
     <p class="abbr">Nat. Commun.</p>
-    <p class="authors">Han J*, <b>Kong D*, Park M*</b>, Schwarz E, Takaesu F, <b>Lee S, Kim CL</b>, Yang E, Ramachandra A, Manning E, Humphrey J†, <b>Park HJ†</b>, Davis ME†</p>
+    <p class="authors">Han J*, <b>Kong D*, Park M*</b>, Schwarz E, Takaesu F, <b>Lee S, Kim CL</b>, Yang E, , Kim E, Kim W, Ramachandra A, Manning E, Humphrey J†, <b>Park HJ†</b>, Davis ME†</p>
     <p class="title">A Cross-scale Causal Mapping Framework Pinpoints Macrophage Orchestrators of Balanced Arterial Development</p>
     <p class="journal">Nature Communications 2026, Accepted</p>
     <p class="link"></p>
@@ -773,10 +773,6 @@
   /* 번호: 발행 논문에 오래된 순서대로 1번부터 */
   var published = PUBS.filter(function(p){ return !p.review; });
   published.forEach(function(p, j){ p.num = published.length - j; });
-
-  /* ---- 2. 소개 문장의 연도 범위 ---- */
-  var yrs = published.map(function(p){ return parseInt(p.year, 10); }).filter(function(n){ return !isNaN(n); });
-  if(yrs.length) document.getElementById('range').textContent = ', ' + Math.min.apply(null, yrs) + '–' + Math.max.apply(null, yrs);
 
 
   /* ---- 3. 상태 (주소창과 연결) ---- */
