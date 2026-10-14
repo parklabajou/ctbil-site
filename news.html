@@ -8,75 +8,157 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#002F6C;--blue:#0072CE;--blue2:#0A5DBE;--sky:#9BCBEB;--gold:#B08D3C;--ink:#10233F;--bg:#F6F8FB;--surface:#fff;--line:#E4E9F0;--muted:#5A6675}
+  :root{
+    --navy:#002F6C; --blue:#0072CE; --blue2:#0A5DBE; --blue-wash:#EAF3FC; --sky:#9BCBEB;
+    --gold:#B08D3C; --gold-ink:#7D6220; --gold-wash:#F7F0DF;
+    --ink:#10233F; --muted:#5A6675; --faint:#97A1AE; --line:#E4E9F0; --soft:#F6F8FB;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
-  .wrap{max-width:960px;margin:0 auto;padding:0 28px}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Space Grotesk','Apple SD Gothic Neo','Malgun Gothic',sans-serif;letter-spacing:-.02em}
   a{color:inherit;text-decoration:none}
-  .phead{background:linear-gradient(100deg,rgba(0,23,58,.90),rgba(0,31,78,.74) 48%,rgba(9,58,140,.5)),url('images/hero-news.jpg') center 42%/cover;color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
-  .phead::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;background:radial-gradient(circle,rgba(155,203,235,.35),transparent 68%);border-radius:50%}
-  .phead .wrap{position:relative;z-index:1}
-  .kick{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sky)}
-  .phead h1{font-size:clamp(30px,4.4vw,44px);font-weight:600;margin:12px 0 10px}
-  .phead p{color:#D6E3F2;max-width:560px;font-size:15.5px}
-  .controls{position:sticky;top:0;z-index:20;background:rgba(246,248,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .controls .wrap{display:flex;gap:8px;flex-wrap:wrap;padding:14px 28px}
-  .chip{font-size:13px;font-weight:600;padding:7px 15px;border-radius:22px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .15s}
-  .chip:hover{border-color:var(--blue);color:var(--blue)}
-  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-  main{padding:44px 0 80px}
-  .feed{position:relative}
-  .feed::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  button,input{font:inherit;color:inherit}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+  .kick{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+  .kick::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--gold)}
+  footer{margin-top:80px;border-top:1px solid var(--line);background:#fff;color:var(--muted);padding:30px 0;font-size:13px;text-align:center}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important}
+  }
+  /* ---------- Page header (간결한 흰 배경 헤더) ---------- */
+  .phead{background:#fff;padding:52px 0 40px;border-bottom:1px solid var(--line)}
+  .phead-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:48px;align-items:center}
+  .phead-in.noimg{grid-template-columns:1fr}
+  .phead h1{font-size:clamp(30px,4.2vw,42px);font-weight:600;color:var(--navy);line-height:1.15;margin:14px 0 10px}
+  .phead p{color:var(--muted);max-width:520px;font-size:16px}
+  .phead-img{aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+  .phead-img img{width:100%;height:100%;object-fit:cover;display:block}
+  @media (max-width:820px){
+    .phead{padding:36px 0 32px}
+    .phead-in{grid-template-columns:1fr;gap:24px}
+  }
+  /* ---------- Filter bar ---------- */
+  .toolbar{background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
+  @media (min-width:760px){.toolbar{position:sticky;top:0}}
+  .toolbar .wrap{padding-top:14px;padding-bottom:14px}
+  .row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .search{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:0 6px 0 14px;background:#fff;transition:border-color .15s}
+  .search:focus-within{border-color:var(--blue)}
+  .search svg{flex:none;color:var(--faint)}
+  .search input{flex:1;border:0;outline:0;background:none;padding:9px 0;font-size:14px;min-width:0}
+  .search input::-webkit-search-cancel-button{display:none}
+  .search .clear{border:0;background:var(--soft);color:var(--muted);border-radius:999px;width:26px;height:26px;cursor:pointer;font-size:15px;line-height:1;display:none}
+  .search.has .clear{display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;transition:border-color .15s,color .15s}
+  .chips button:hover{border-color:var(--blue);color:var(--blue)}
+  .chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+  .chips .c{font-weight:500;opacity:.65;margin-left:4px}
+  .chips button.zero{opacity:.45}
+  @media (max-width:759px){
+    .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -28px;padding:0 28px 2px;width:calc(100% + 56px)}
+    .chips::-webkit-scrollbar{display:none}
+    .chips button{flex:none}
+  }
+  /* ---------- Photo viewer ---------- */
+  .lb{position:fixed;inset:0;background:rgba(10,27,51,.88);display:none;align-items:center;justify-content:center;z-index:1000;padding:28px}
+  .lb.on{display:flex}
+  .lb img{max-width:100%;max-height:100%;border-radius:10px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .lb button{position:absolute;top:16px;right:20px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+  .lb button:hover{background:rgba(255,255,255,.3)}
+  main{padding:8px 0 0}
+  .status{padding:22px 0 0;font-size:13px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .status .lnk{border:0;background:none;color:var(--blue);font-weight:600;cursor:pointer;padding:0}
+  .status .lnk:hover{text-decoration:underline}
+
+  /* ---------- 연도 묶음 (논문 페이지와 같은 모양) ---------- */
+  .yg{margin-top:34px}
+  .yg-h{display:flex;align-items:baseline;gap:14px;padding-bottom:10px;border-bottom:2px solid var(--navy);cursor:pointer;user-select:none}
+  .yg-h h2{font-size:28px;font-weight:600;line-height:1.1;color:var(--navy)}
+  .yg-h .cnt{font-size:13px;color:var(--muted)}
+  .toggle{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px 5px 14px;font-size:13px;font-weight:600;color:var(--blue);cursor:pointer}
+  .yg-h:hover .toggle{border-color:var(--blue)}
+  .toggle svg{transition:transform .2s}
+  .toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+  .yg.closed .yg-h{border-bottom-color:var(--line)}
+
+  /* ---------- 소식 목록 (세로 타임라인) ---------- */
+  .feed{position:relative;padding-top:26px}
+  .feed::before{content:"";position:absolute;left:7px;top:30px;bottom:8px;width:2px;background:var(--line)}
   @media(max-width:640px){.feed::before{display:none}}
-  .news{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:0 0 22px 46px;transition:transform .15s ease,box-shadow .15s ease}
-  @media(max-width:640px){.news{margin-left:0}}
-  .news:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(16,35,63,.09)}
-  .news .node{position:absolute;left:-38px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+  .news{position:relative;padding:4px 0 36px 40px}
+  .news:last-child{padding-bottom:8px}
+  @media(max-width:640px){.news{padding-left:0}}
+  .news .node{position:absolute;left:0;top:10px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
   @media(max-width:640px){.news .node{display:none}}
-  .news .body{padding:22px 24px}
-  .news .top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
-  .tag{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.03em}
+  .news .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .tag{font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;letter-spacing:.03em}
   .tag.award{background:rgba(176,141,60,.16);color:#7d6220}
   .tag.talk{background:rgba(0,114,206,.12);color:var(--blue2)}
   .tag.career{background:rgba(16,120,80,.12);color:#0b7350}
   .tag.grant{background:rgba(120,60,160,.12);color:#6a2a94}
   .tag.event{background:rgba(18,160,160,.13);color:#0c7c7c}
   .tag.paper{background:rgba(0,47,108,.1);color:var(--navy)}
-  .news .date{font-size:12.5px;color:var(--muted);font-weight:600;font-family:'Space Grotesk'}
-  .news .txt{font-size:14.5px;color:var(--ink);line-height:1.6}
-  .imgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .imgs a{display:block;width:240px;height:240px;border-radius:11px;overflow:hidden;background:#e9eef5;border:1px solid var(--line)}
-  .imgs img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s ease}
-  .imgs a:hover img{transform:scale(1.07)}
-  footer{background:#0A1B33;color:#9FB4CE;padding:32px 0;font-size:13px;text-align:center}
+  .news .date{font-size:13px;color:var(--muted);font-weight:600;font-family:'Space Grotesk',sans-serif}
+  .news .txt{font-size:15.5px;color:var(--ink);line-height:1.7;max-width:820px}
+  .news .txt a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+
+  /* 소식 사진: 장수에 따라 칸이 달라져요. 누르면 확대 */
+  .imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;max-width:820px}
+  .imgs a{display:block;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--soft);border:1px solid var(--line);cursor:zoom-in}
+  .imgs img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
+  .imgs a:hover img{transform:scale(1.05)}
+  .imgs.n1{grid-template-columns:1fr;max-width:560px}
+  .imgs.n1 a{aspect-ratio:3/2}
+  .imgs.n2,.imgs.n4{grid-template-columns:repeat(2,1fr)}
+  .empty{padding:60px 0;text-align:center;color:var(--muted)}
+  @media(max-width:560px){
+    .imgs,.imgs.n4{grid-template-columns:repeat(2,1fr)}
+    .imgs.n1{grid-template-columns:1fr}
+    .yg-h h2{font-size:22px}
+  }
+
 </style>
 </head>
 <body>
 
 <header class="phead">
-  <div class="wrap">
-    <div class="kick">News</div>
-    <h1>Lab News &amp; Highlights</h1>
-    <p>Awards, presentations, career milestones, and life in the lab.</p>
+  <div class="wrap phead-in">
+    <div>
+      <div class="kick">News</div>
+      <h1>Lab News &amp; Highlights</h1>
+      <p>Awards, presentations, career milestones, and life in the lab.</p>
+    </div>
+    <div class="phead-img"><img src="images/hero-news.jpg" alt="" onerror="var w=this.closest('.phead-in');if(w)w.classList.add('noimg');if(this.parentNode)this.parentNode.remove()"></div>
   </div>
 </header>
 
-<div class="controls"><div class="wrap" id="filters"></div></div>
-<main><div class="wrap"><div class="feed" id="feed"></div></div></main>
+<div class="toolbar" role="region" aria-label="Filter news">
+  <div class="wrap"><div class="chips" id="filters" role="group" aria-label="Category"></div></div>
+</div>
+<main><div class="wrap">
+  <div class="status"><span id="status" aria-live="polite"></span><button type="button" class="lnk" id="expand-all">Expand all</button><button type="button" class="lnk" id="collapse-all">Collapse all</button></div>
+  <div id="list"></div>
+</div></main>
 <footer>© 2026 Cell Therapy &amp; Bioinformatics Lab, Ajou University</footer>
 
-
 <!-- ###################################################################
-     ▼▼▼   뉴스 목록  —  여기만 수정하세요   ▼▼▼
-     ● 새 소식 추가: <article> 블록 하나 복사해 맨 위에 붙이고 글자만 교체.
-     ● date="..."   → 날짜 (예: 2026.08.01)
-     ● type="..."   → 태그 색상: award(수상,금) / talk(발표,파랑) / career(진로,초록)
-                      / grant(연구비·장학,보라) / event(행사·학회,청록) / paper(논문,남색)
-     ● label="..."  → 태그에 보일 글자 (예: Award)
-     ● class="txt"  → 소식 본문
-     ● class="imgs" → 사진 주소들. 여러 장이면 줄바꿈(또는 공백)으로 나열. 없으면 비워두기.
-                      나중에 GitHub images 폴더에 올려서 images/파일명.jpg 로 바꾸면 더 안정적입니다.
+     뉴스 목록 (여기만 수정하세요)
+
+     새 소식은 아래 <article> 블록 하나를 복사해서 맨 위에 붙이고 글자만 바꾸면 돼요.
+     - date  : 날짜 (예: 2026.08.01). 앞의 네 자리 연도로 자동으로 묶여요.
+     - type  : 태그 색깔. award(수상, 금색) / talk(발표, 파랑) / career(진로, 초록)
+               / grant(연구비·장학, 보라) / event(행사·학회, 청록) / paper(논문, 남색)
+     - label : 태그에 보일 글자 (예: Award)
+     - class="txt"  : 소식 본문. 강조는 <b>이름</b>, 링크는 <a href="주소">Link</a>
+     - class="imgs" : 사진 경로. 여러 장이면 줄을 바꿔서(또는 띄어서) 나열하고, 없으면 비워두세요.
+                      사진은 GitHub 의 images 폴더에 올린 뒤 images/파일명.jpg 로 적으면 가장 안정적이에요.
+     연도별로 자동으로 묶이고, 가장 최근 연도만 펼쳐진 채로 시작해요. 같은 연도 안에서는 적힌 순서대로 보이니
+     새 소식은 꼭 맨 위에 붙여주세요.
      ################################################################### -->
 <div id="news-data" hidden>
   
@@ -277,48 +359,124 @@ Congratulations, Chaelin. We are excited to see what your team will achieve! �
     <p class="imgs">images/230213.png</p>
   </article>
 </div>
-<!-- ▲▲▲   뉴스 목록 끝   ▲▲▲ -->
-
+<!-- 뉴스 목록 끝 -->
 
 <script>
-/* ===== 표시 코드 — 수정 불필요 ===== */
-function parseNews(){
-  return [...document.querySelectorAll('#news-data article')].map(a=>({
-    date:(a.getAttribute('date')||'').trim(),
-    type:(a.getAttribute('type')||'event').trim(),
-    label:(a.getAttribute('label')||'').trim(),
-    txt:(a.querySelector('.txt')?.innerHTML||'').trim(),
-    imgs:((a.querySelector('.imgs')?.textContent)||'').split(/\s+/).map(s=>s.trim()).filter(Boolean)
-  }));
-}
-const NEWS = parseNews();
-function render(filter){
-  const feed=document.getElementById('feed'); feed.innerHTML='';
-  const data = filter&&filter!=='All' ? NEWS.filter(n=>n.type===filter) : NEWS;
-  data.forEach(n=>{
-    const imgs = n.imgs.length
-      ? `<div class="imgs">${n.imgs.map(u=>`<a href="${u}" target="_blank" rel="noopener"><img loading="lazy" src="${u}" alt=""></a>`).join('')}</div>`
-      : '';
-    const el=document.createElement('div'); el.className='news';
-    el.innerHTML=`<div class="node"></div>
-      <div class="body">
-        <div class="top"><span class="tag ${n.type}">${n.label}</span><span class="date">${n.date}</span></div>
-        <div class="txt">${n.txt}</div>
-        ${imgs}
-      </div>`;
-    feed.appendChild(el);
+/* 여기서부터는 화면을 그리는 코드예요. 건드리지 않아도 됩니다. */
+(function(){
+  var NEWS = [].slice.call(document.querySelectorAll('#news-data article')).map(function(a){
+    var t = a.querySelector('.txt'), im = a.querySelector('.imgs');
+    var date = (a.getAttribute('date') || '').trim();
+    var ym = date.match(/\d{4}/);
+    return {
+      date: date,
+      year: ym ? ym[0] : 'Other',
+      type: (a.getAttribute('type') || 'event').trim(),
+      label: (a.getAttribute('label') || '').trim(),
+      txt: t ? t.innerHTML.trim() : '',
+      imgs: (im ? im.textContent : '').split(/\s+/).filter(Boolean)
+    };
   });
-}
-function buildFilters(){
-  const types=[['All','All'],['award','Award'],['talk','Talk'],['event','Event'],['grant','Grant'],['career','Career'],['paper','Paper']];
-  const box=document.getElementById('filters');
-  types.forEach((t,i)=>{
-    const c=document.createElement('button'); c.className='chip'+(i===0?' active':''); c.textContent=t[1];
-    c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');render(t[0]);};
+  var chev = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  var list = document.getElementById('list');
+  var filter = 'All';
+  var openYears = null;   /* 연도별로 펼침/접힘 상태. 처음엔 가장 최근 연도만 펼쳐요. */
+
+  function yearsOf(data){
+    var ys = [];
+    data.forEach(function(n){ if(ys.indexOf(n.year) < 0) ys.push(n.year); });
+    return ys.sort(function(a, b){
+      if(a === 'Other') return 1; if(b === 'Other') return -1;
+      return b - a;
+    });
+  }
+  function initOpen(){
+    if(openYears) return;
+    openYears = {};
+    yearsOf(NEWS).forEach(function(y, i){ openYears[y] = (i === 0); });
+  }
+  function itemHTML(n){
+    var imgs = n.imgs.length
+      ? '<div class="imgs n' + Math.min(n.imgs.length, 6) + '">' + n.imgs.map(function(u){
+          return '<a href="' + u + '" data-zoom><img loading="lazy" src="' + u + '" alt="" onerror="var b=this.closest(\'.imgs\');if(this.parentNode)this.parentNode.remove();if(b&&b.parentNode&&!b.children.length)b.remove()"></a>';
+        }).join('') + '</div>'
+      : '';
+    return '<div class="news"><div class="node"></div>' +
+      '<div class="top"><span class="tag ' + n.type + '">' + n.label + '</span><span class="date">' + n.date + '</span></div>' +
+      '<div class="txt">' + n.txt + '</div>' + imgs + '</div>';
+  }
+  function render(){
+    initOpen();
+    var data = filter === 'All' ? NEWS : NEWS.filter(function(n){ return n.type === filter; });
+    var years = yearsOf(data), html = '';
+    years.forEach(function(y){
+      var g = data.filter(function(n){ return n.year === y; });
+      var open = filter !== 'All' ? true : !!openYears[y];   /* 태그로 거르면 결과가 짧으니 다 펼쳐요 */
+      var id = 'y-' + y;
+      html += '<section class="yg' + (open ? '' : ' closed') + '" data-year="' + y + '">' +
+        '<div class="yg-h"><h2 id="' + id + '-h">' + y + '</h2><span class="cnt">' + g.length + (g.length > 1 ? ' posts' : ' post') + '</span>' +
+        '<button type="button" class="toggle" aria-expanded="' + open + '" aria-controls="' + id + '">' + (open ? 'Hide' : 'Show') + chev + '</button></div>' +
+        '<div class="feed" id="' + id + '"' + (open ? '' : ' hidden') + '>' + g.map(itemHTML).join('') + '</div></section>';
+    });
+    if(!data.length) html = '<div class="empty">No news in this category yet.</div>';
+    list.innerHTML = html;
+    document.getElementById('status').textContent = filter === 'All'
+      ? NEWS.length + ' posts across ' + years.length + (years.length > 1 ? ' years' : ' year')
+      : 'Showing ' + data.length + ' of ' + NEWS.length;
+    var ctl = filter === 'All';
+    document.getElementById('expand-all').hidden = !ctl;
+    document.getElementById('collapse-all').hidden = !ctl;
+  }
+  list.addEventListener('click', function(e){
+    var h = e.target.closest('.yg-h'); if(!h) return;
+    if(e.target.closest('a')) return;
+    if(filter !== 'All') return;
+    var sec = h.closest('.yg'), y = sec.getAttribute('data-year');
+    openYears[y] = !openYears[y];
+    var btn = h.querySelector('.toggle'), body = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.setAttribute('aria-expanded', openYears[y]);
+    btn.innerHTML = (openYears[y] ? 'Hide' : 'Show') + chev;
+    body.hidden = !openYears[y];
+    sec.classList.toggle('closed', !openYears[y]);
+  });
+  document.getElementById('expand-all').addEventListener('click', function(){ for(var y in openYears) openYears[y] = true; render(); });
+  document.getElementById('collapse-all').addEventListener('click', function(){ for(var y in openYears) openYears[y] = false; render(); });
+
+  var types = [['All', 'All'], ['award', 'Award'], ['talk', 'Talk'], ['event', 'Event'], ['grant', 'Grant'], ['career', 'Career'], ['paper', 'Paper']];
+  var box = document.getElementById('filters');
+  types.forEach(function(t, i){
+    var c = document.createElement('button'); c.type = 'button';
+    var n = t[0] === 'All' ? NEWS.length : NEWS.filter(function(x){ return x.type === t[0]; }).length;
+    c.innerHTML = t[1] + '<span class="c">' + n + '</span>';
+    if(n === 0) c.classList.add('zero');
+    c.setAttribute('aria-pressed', i === 0);
+    c.addEventListener('click', function(){
+      [].forEach.call(box.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', 'false'); });
+      c.setAttribute('aria-pressed', 'true'); filter = t[0]; render();
+    });
     box.appendChild(c);
   });
-}
-buildFilters(); render('All');
+  render();
+})();
+
+/* 사진을 누르면 크게 보여주는 부분이에요. data-zoom 이 붙은 링크가 대상입니다. */
+(function(){
+  var lb = document.createElement('div');
+  lb.className = 'lb';
+  lb.innerHTML = '<button type="button" aria-label="Close">×</button><img alt="">';
+  document.body.appendChild(lb);
+  var im = lb.querySelector('img');
+  function close(){ lb.classList.remove('on'); im.removeAttribute('src'); }
+  lb.addEventListener('click', function(e){ if(e.target !== im) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('[data-zoom]') : null;
+    if(!a) return;
+    e.preventDefault();
+    im.src = a.getAttribute('href');
+    lb.classList.add('on');
+  });
+})();
 </script>
 </body>
 </html>
