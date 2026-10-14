@@ -13,7 +13,8 @@
 - `patents.html`: 특허 목록. 등록/출원으로 나뉘고 검색할 수 있어요.
 - `news.html`: 뉴스. 연도별로 묶여서 접었다 펼 수 있고, 태그별로 걸러볼 수 있어요.
 - `gallery.html`: 갤러리. 사진을 누르면 크게 보여요.
-- `contact.html`: 연락처, 지도, 채용 안내.
+- `contact.html`: 연락처(교수님·연구실), 주소, 지도, 채용 안내.
+- `gallery-header.html`: 갤러리 페이지 맨 위에 붙이는 제목 띠. 사진 자체는 구글 사이트의 갤러리 하위 페이지(Conference, Anniversary, Lab activity)에 있어요.
 - `설정가이드.html`: GitHub Pages와 구글 사이트 연결 방법을 그림으로 설명한 문서.
 - `images/`: 사진 폴더 (아래 "사진 올리기" 참고).
 
@@ -24,6 +25,8 @@
 - 연구: `hero-research.jpg`
 - 팀: `hero-team.jpg`
 - 뉴스: `hero-news.jpg`
+- 연락처: `hero-contact.jpg`
+- 갤러리 제목 띠: `hero-banner.png` (전에 쓰던 파일 그대로예요)
 
 ## 고치는 기본 방법
 
@@ -100,7 +103,7 @@ images/사진2.jpg</p>
 
 사진은 `images/hero.jpg` 를 올리면 들어가고, 파일이 없으면 사진 자리가 통째로 사라져요. 가로로 긴 사진(16:9 정도)이 잘 어울려요.
 
-연락처의 전화번호는 비워 뒀어요. 넣고 싶으면 `index.html` 의 Contact 부분에 주석으로 적어 둔 Phone 두 줄을 꺼내서 번호를 적으세요.
+연락처(주소·전화·이메일)는 `contact.html` 과 같은 내용이니, 바뀌면 두 파일을 같이 고쳐주세요.
 
 구글 사이트에 나눠서 넣을 수도 있어요. 주소 뒤에 `?show=intro` 를 붙이면 제목과 소개만, `?show=join` 을 붙이면 모집 안내와 연락처만 보여요. 그래서 사진을 GitHub 에 올리는 대신 구글 사이트 것으로 쓰고 싶으면, 이렇게 구성하면 돼요.
 
@@ -141,6 +144,14 @@ images/사진2.jpg</p>
 - `title`, `inventors`, `no`(번호), `statusText`(화면에 보일 상태 글자)
 
 등록과 출원은 화면에서 알아서 나뉘고, 번호도 자동으로 붙어요.
+
+## 연락처 (`contact.html`)
+
+교수님과 연구실 연락처 카드 두 개, 주소, 지도, 모집 안내 순서예요. 호실이나 전화번호는 글자만 바꾸면 돼요. 지도는 `iframe` 의 `q=` 뒤 주소로 자동 표시되니, 위치가 바뀌면 그 부분만 고치세요.
+
+## 갤러리 제목 띠 (`gallery-header.html`)
+
+구글 사이트 갤러리 페이지의 맨 위에 임베드하는 작은 제목 영역이에요. 아래 태그 세 개는 구글 사이트 하위 페이지로 가는 링크고, 임베드 주소 뒤에 `?active=conference`, `?active=anniversary`, `?active=lab-activity` 를 붙이면 그 페이지에서 해당 태그가 남색으로 표시돼요. 태그를 늘리려면 `<a>` 한 줄을 복사해서 주소(`href`)와 `data-k`, 글자를 바꾸면 돼요.
 
 ## 갤러리 사진 추가 (`gallery.html`)
 
